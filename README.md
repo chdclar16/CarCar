@@ -2,8 +2,8 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Stephen Zhu - Service
+* Chad Manuel - Sales
 
 ## Design
 
