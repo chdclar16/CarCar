@@ -38,7 +38,7 @@ export default function VehicleList(){
                                 <tr key={vehicle.id}>
                                     <td>{vehicle.name}</td>
                                     <td>{vehicle.manufacturer.name}</td>
-                                    <td><img src={vehicle.picture_url} className='img-fluid' /></td>
+                                    <td><img src={vehicle.picture_url} className='img-fluid'></img></td>
                                 </tr>
                             )
                         })}
