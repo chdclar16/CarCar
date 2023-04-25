@@ -2,6 +2,7 @@ from django.db import models
 
 
 class AutomobileVO(models.Model):
+    import_href = models.Charfield(max_length=200, null=True, unique=True)
     color = models.CharField(max_length=50)
     year = models.PositiveSmallIntegerField()
     vin = models.CharField(max_length=17, unique=True)
@@ -31,3 +32,5 @@ class Appointment(models.Model):
     )
     def __str__(self):
         return self.customer #or self.vin?
+
+#Write views below
