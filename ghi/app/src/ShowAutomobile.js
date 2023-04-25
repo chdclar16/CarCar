@@ -28,12 +28,12 @@ const fetchData = async () => {
             <table className="table table-striped" style={{ width: "100%" }}>
             <thead>
                 <tr>
-                <th scope="col">Vin</th>
-                <th scope="col">Color</th>
-                <th scope="col">Year</th>
-                <th scope="col">Model</th>
-                <th scope="col">Manufacturer</th>
-                <th scope="col">Sold</th>
+                    <th scope="col">Vin</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Sold</th>
                 </tr>
             </thead>
             <tbody>

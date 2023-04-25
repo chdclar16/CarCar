@@ -96,7 +96,7 @@ def technician_detail(request, pk):
                 status=404
             )
     elif request.method == "DELETE":
-        technician = Appointment.objects.filter(id=pk)
+        technician = Technician.objects.filter(id=pk)
         if technician.exists(): #checks of technician exists
             technician.delete()
             return JsonResponse(
