@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 
 const ManufacturerListing = (props) => {
@@ -32,23 +31,25 @@ const fetchData = async () => {
 
         return (
             <>
-                <table className="tabel table-striped">
-                    <thead>
-                        <tr>
-                            <th>Manufacturer</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {manufacturer.map(manufacturer => {
-                            return (
-                                <tr>
-                                    <td>{ manufacturer.name }</td>
-                                    <td><button onClick={() => deleteManufacturer(manufacturer.pk)}/>Delete</td>
-                                </tr>
-                            )
-                            })}
-                    </tbody>
-                </table>
+                <div className="container">
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Manufacturer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {manufacturer.map(manufacturer => {
+                                return (
+                                    <tr>
+                                        <td>{ manufacturer.name }</td>
+                                        <td><button onClick={() => deleteManufacturer(manufacturer.pk)}/>Delete</td>
+                                    </tr>
+                                )
+                                })}
+                        </tbody>
+                    </table>
+                </div>
             </>
         )
     }
