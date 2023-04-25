@@ -64,7 +64,7 @@ export default function CreateVehicle() {
         <div className="row">
         <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-            <h1>Create a Vehicle </h1>
+            <h1>Create a Vehicle Model </h1>
             <form onSubmit={handleSubmit} id="create-vehicle-form">
                 <div className="form-floating mb-3">
                 <input onChange={handleModelChange} value={model} placeholder="Vehicle Model" required type="text" name="model" id="model" className="form-control" />
