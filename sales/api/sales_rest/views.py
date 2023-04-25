@@ -28,6 +28,7 @@ class CustomerEncoder(ModelEncoder):
         "last_name",
         "address",
         "phone_number",
+        "id"
     ]
 
 class SalesEncoder(ModelEncoder):
@@ -69,6 +70,27 @@ def salespeople_list(request):
                 status=400,
             )
 
+@require_http_methods(["GET", "DELETE"])
+def salespeople_description(request, id):
+    try:
+        salesperson = Salesperson.objects.get(id=id)
+    except Salesperson.DoesNotExist:
+        return JsonResponse(
+            {"message": "Invalid Sales Person"}
+        )
+
+    if request.method == "GET":
+        return JsonResponse(
+            salesperson,
+            encoder=SalespeopleEncoder,
+            safe=False
+        )
+    else:
+        count, _= Salesperson.objects.filter(id=id).delete()
+        return JsonResponse(
+            {"deleted": count > 0}
+        )
+
 
 @require_http_methods(["GET", "POST"])
 def customer_list(request):
@@ -94,6 +116,27 @@ def customer_list(request):
                 status=400,
             )
 
+@require_http_methods(["GET", "DELETE"])
+def customer_description(request, id):
+    try:
+        customer = Customer.objects.get(id=id)
+    except Customer.DoesNotExist:
+        return JsonResponse(
+            {"message": "Invalid Customer ID"},
+            status=400,
+        )
+
+    if request.method == "GET":
+        return JsonResponse(
+            customer,
+            encoder=CustomerEncoder,
+            safe=False
+        )
+    else:
+        count, _= Customer.objects.filter(id=id).delete()
+        return JsonResponse(
+            {"deleted": count > 0}
+        )
 
 @require_http_methods(["GET", "POST"])
 def sales_list(request):
@@ -129,3 +172,25 @@ def sales_list(request):
                 encoder=SalesEncoder,
                 safe=False
             )
+
+@require_http_methods(["GET","DELETE"])
+def sale_description(request, id):
+    try:
+        sale = Sale.objects.get(id=id)
+    except Sale.DoesNotExist:
+        return JsonResponse(
+            {"message": "Invalid Sale ID"},
+            status=400,
+        )
+
+    if request.method == "GET":
+        return JsonResponse(
+            sale,
+            encoder=SalesEncoder,
+            safe=False
+        )
+    else:
+        count, _ = Sale.objects.filter(id=id).delete()
+        return JsonResponse(
+            {"deleted": count > 0}
+        )
