@@ -2,8 +2,13 @@ from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
 from common.json import ModelEncoder
-from .models import AutomobileVO, Technician, Appointment
+from .models import AutomobileVO, Technician, Appointment, Status
 
+class StatusEncoder(ModelEncoder):
+    model = Status
+    properties = [
+        "name"
+    ]
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
@@ -15,6 +20,7 @@ class AutomobileVOEncoder(ModelEncoder):
 class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = [
+        "id",
         "first_name",
         "last_name",
         "employee_id"
@@ -33,6 +39,7 @@ class AppointmentEncoder(ModelEncoder):
     ]
     encoders = {
         "technician": TechnicianEncoder(),
+        "status": StatusEncoder(),
         #check back later, is an encoder needed for vin
     }
 
@@ -89,17 +96,17 @@ def technician_detail(request, pk):
                 status=404
             )
     elif request.method == "DELETE":
-        try:
-            count, _ = Technician.objects.filter(id=pk).delete()
+        technician = Appointment.objects.filter(id=pk)
+        if technician.exists(): #checks of technician exists
+            technician.delete()
             return JsonResponse(
-                {"delete": count > 0},
-                safe=False,
-            )
-        except Technician.DoesNotExist:
+                {"message": "Technician successfully deleted"}
+                )
+        else:
             return JsonResponse(
-                {"message": "The technician you are trying to delete does not exist"},
+                {"message": "Technician does not exist"},
                 status=404
-            )
+                )
     else:
         content = json.loads(request.body)
         try:
@@ -156,17 +163,17 @@ def appointment_detail(request, pk):
                 status=404,
             )
     elif request.method == "DELETE":
-        try:
-            count, _ = Appointment.objects.filter(id=pk).delete()
+        appointments = Appointment.objects.filter(id=pk)
+        if appointments.exists():   #checks if appoint exists
+            appointments.delete()
             return JsonResponse(
-                {"delete": count > 0},
-                safe=False,
-            )
-        except Appointment.DoesNotExist:
+                {"message": "Appointment successfully deleted"}
+                )
+        else:
             return JsonResponse(
-                {"message": "Appointment you are trying to delete does not exist"},
-                status=404,
-            )
+                {"message": "Appointment does not exist"},
+                status=404
+                )
     else:
         content = json.loads(request.body)
         try:

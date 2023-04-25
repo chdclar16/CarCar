@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class AutomobileVO(models.Model):
@@ -9,6 +10,14 @@ class AutomobileVO(models.Model):
 
     def __str__(self):
         return self.vin
+
+
+class Status(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
 
 class Technician(models.Model):
     first_name = models.CharField(max_length=150)
@@ -22,9 +31,14 @@ class Technician(models.Model):
 class Appointment(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
     service_reason = models.TextField()
-    status = models.CharField(max_length=200)
     vin = models.CharField(max_length=200)
     customer = models.CharField(max_length=150)
+    status = models.ForeignKey(
+        Status,
+        related_name="appointments",
+        on_delete=models.PROTECT,
+    )
+
     technician = models.ForeignKey(
         Technician,
         related_name="technicians",
@@ -32,3 +46,23 @@ class Appointment(models.Model):
     )
     def __str__(self):
         return self.customer #or self.vin?
+
+    def finished(self):
+        status = Status.objects.get(name="FINISHED")
+        self.status = status
+        self.save()
+
+    def canceled(self):
+        status = Status.objects.get(name="CANCELED")
+        self.status = status
+        self.save()
+
+    def get_api_url(self):
+        return reverse("appointment_detail", kwargs={"id": self.id})
+
+    @classmethod
+    def create(cls, **kwargs):
+        kwargs["status"] = Status.objects.get(name="CREATED")
+        appointment = cls(**kwargs)
+        appointment.save()
+        return appointment
