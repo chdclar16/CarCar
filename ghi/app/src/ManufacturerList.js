@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 
 const ManufacturerListing = (props) => {
@@ -39,14 +38,14 @@ const fetchData = async () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {manufacturer.map(manufacturer => {
+                        {manufacturer.map((manufacturer, index) => {
                             return (
-                                <tr>
+                                <tr key={index} list={manufacturer.pk}>
                                     <td>{ manufacturer.name }</td>
-                                    <td><button onClick={() => deleteManufacturer(manufacturer.pk)}/>Delete</td>
+                                    <td><button onClick={() => deleteManufacturer(manufacturer.id)}>Delete</button></td>
                                 </tr>
                             )
-                            })}
+                        })}
                     </tbody>
                 </table>
             </>
