@@ -31,7 +31,7 @@ const fetchData = async () => {
 
         return (
             <>
-                <table className="tabel table-striped">
+                <table className="table table-striped" style={{ width: "100%" }}>
                     <thead>
                         <tr>
                             <th>Manufacturer</th>
