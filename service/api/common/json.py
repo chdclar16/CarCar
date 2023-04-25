@@ -7,7 +7,8 @@ from datetime import datetime
 class DateEncoder(JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):
-            return o.isoformat()
+            # return o.isoformat()
+            return o.strftime('%Y-%m-%d %H:%M:%S')
         else:
             return super().default(o)
 
