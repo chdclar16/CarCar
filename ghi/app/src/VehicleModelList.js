@@ -10,7 +10,7 @@ export default function VehicleList(){
             const response = await fetch('http://localhost:8100/api/models/')
             if (response.ok) {
                 const data = await response.json();
-                setVehicleModel(data.models)
+                setVehicleModel(data.models);
             }
         } catch (e) {
             console.error(e)
@@ -38,7 +38,7 @@ export default function VehicleList(){
                                 <tr key={vehicle.id}>
                                     <td>{vehicle.name}</td>
                                     <td>{vehicle.manufacturer.name}</td>
-                                    <td><img src={vehicle.picture_url} className='img-fluid'></img></td>
+                                    <td><img src={vehicle.picture_url} className='img-fluid' alt="vehicle"></img></td>
                                 </tr>
                             )
                         })}
