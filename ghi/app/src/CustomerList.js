@@ -1,42 +1,44 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default function SalesPeopleList() {
-    const [salesPerson, setSalesPerson] = useState([])
+export default function CustomerList() {
+    const [customers, setCustomer] = useState([]);
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:8090/api/salespeople/')
+            const response = await fetch('http://localhost:8090/api/customers/')
             if (response.ok) {
                 const data = await response.json();
-                setSalesPerson(data.salespeople);
+                setCustomer(data.Customer);
             }
         } catch (e) {
             console.error(e)
         }
     }
-    useEffect( () => {
+    useEffect(() => {
         fetchData()
-    }, [salesPerson])
+    }, [customers])
 
     return (
         <>
             <div className='container overflow-hidden'>
-                <h1>Sales People</h1>
+                <h1>Customers</h1>
                 <table className='table table-striped'>
                     <thead>
                         <tr>
-                            <th>Employee ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>Phone Number</th>
+                            <th>Address</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {salesPerson.map((salespeople) =>{
+                        {customers.map((customer) => {
                             return (
-                                <tr key={salespeople.id}>
-                                    <td>{salespeople.employee_id}</td>
-                                    <td>{salespeople.first_name}</td>
-                                    <td>{salespeople.last_name}</td>
+                                <tr key="customer">
+                                    <td>{customer.first_name}</td>
+                                    <td>{customer.last_name}</td>
+                                    <td>{customer.phone_number}</td>
+                                    <td>{customer.address}</td>
                                 </tr>
                             )
                         })}
