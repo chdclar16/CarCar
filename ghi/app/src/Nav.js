@@ -23,6 +23,9 @@ function Nav() {
           <NavLink className='nav-link' to="createmodel">Create Vehicle Model</NavLink>
           </li>
           <li>
+          <NavLink className='nav-link' to="/automobile">Automobiles</NavLink>
+          </li>
+          <li>
             <NavLink className='nav-link' to="inventory/create">Add Automobile To Inventory</NavLink>
           </li>
           </ul>
