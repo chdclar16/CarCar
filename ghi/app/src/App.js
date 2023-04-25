@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import ManufacturerList from './ManufacturerList';
+import ManufacturerForm from './CreateManufacturerForm';
 import VehicleList from './VehicleModelList';
 import CreateVehicleForm from './CreateVehicleForm';
 import AutomobileForm from './AutoMobileForm';
@@ -14,6 +15,7 @@ function App(props) {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/manufacturers" element={<ManufacturerList manufacturers={props.manufacturers} />} />
+          <Route path="/manufacturers/new" element={<ManufacturerForm />} />
           <Route path="inventory" element={<VehicleList />} />
           <Route path="createmodel" element={<CreateVehicleForm />} />
           <Route path="inventory/create" element={<AutomobileForm />} />
