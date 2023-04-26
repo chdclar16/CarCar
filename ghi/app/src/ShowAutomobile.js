@@ -10,7 +10,6 @@ const fetchData = async () => {
         const response = await fetch(autoUrl);
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             setAutomobile(data.autos)
         }
     } catch (e) {
