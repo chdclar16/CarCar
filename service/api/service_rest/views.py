@@ -31,10 +31,12 @@ class AppointmentEncoder(ModelEncoder):
     properties = [
         "id",
         "customer",
-        "date_time",
+        "date",
+        "time",
         "service_reason",
         "vin",
         "technician",
+        "vip",
         "status"
     ]
     encoders = {
@@ -96,7 +98,7 @@ def technician_detail(request, pk):
                 status=404
             )
     elif request.method == "DELETE":
-        technician = Appointment.objects.filter(id=pk)
+        technician = Technician.objects.filter(id=pk)
         if technician.exists(): #checks of technician exists
             technician.delete()
             return JsonResponse(
@@ -135,9 +137,15 @@ def appointment_list(request):
     else:
         content = json.loads(request.body)
         try:
-            appointments = Appointment.objects.create(**content)
+            # appointments = Appointment.objects.create(**content)
+            id = content["technician"]
+            technician = Technician.objects.get(id=id)
+            content.update({
+                "technician": technician,
+                "vip": content["vin"] in AutomobileVO.objects.all().values_list('vin', flat=True) #flat=True takes tuples and make them a list
+            })
             return JsonResponse(
-                appointments,
+                Appointment.objects.create(**content),
                 encoder=AppointmentEncoder,
                 safe=False,
             )

@@ -8,12 +8,15 @@ import CreateVehicleForm from './CreateVehicleForm';
 import AutomobileForm from './AutoMobileForm';
 import AutomobileListing from './ShowAutomobile';
 import SalesPersonForm from './SalesPersonForm';
+import TechnicianForm from './TechnicianForm';
+import TechnicianList from './TechnicianList';
 import SalesPeopleList from './SalesPeopleList';
 import CustomerForm from './CreateCustomerForm';
 import CustomerList from './CustomerList';
 import NewSaleForm from './NewSaleForm';
 import SalesList from './SalesList';
-
+import AppointmentForm from './AppointmentForm';
+import AppointmentList from './AppointmentList';
 
 function App(props) {
   return (
@@ -34,6 +37,10 @@ function App(props) {
             <Route path='' element={<SalesPeopleList />} />
             <Route path="new" element={<SalesPersonForm />} />
           </Route>
+          <Route path="technicians" element={<TechnicianList />} />
+            <Route path="/technicians/new" element={<TechnicianForm />} />
+            <Route path="/appointments" element={<AppointmentList />} />
+            <Route path="/appointments/new" element={<AppointmentForm />} />
           <Route path="customers" >
             <Route path='' element={<CustomerList />} />
             <Route path='new' element={<CustomerForm />} />

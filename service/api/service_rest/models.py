@@ -29,14 +29,17 @@ class Technician(models.Model):
 
 
 class Appointment(models.Model):
-    date_time = models.DateTimeField(auto_now_add=True)
+    date = models.CharField(max_length=30, default="")
+    time = models.CharField(max_length=30, default="")
     service_reason = models.TextField()
     vin = models.CharField(max_length=200)
     customer = models.CharField(max_length=150)
+    vip = models.BooleanField(default=False)
     status = models.ForeignKey(
         Status,
         related_name="appointments",
         on_delete=models.PROTECT,
+        default=1,
     )
 
     technician = models.ForeignKey(
