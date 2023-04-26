@@ -19,6 +19,7 @@ class AutomobileVOEncoder(ModelEncoder):
     properties = [
         "vin",
         "id",
+        "sold",
     ]
 
 class CustomerEncoder(ModelEncoder):
@@ -153,6 +154,7 @@ def sales_list(request):
 
             auto = AutomobileVO.objects.get(vin=content["automobile"])
             content["automobile"] = auto
+            # content["automobile"]["sold"] = True
 
             salesperson = Salesperson.objects.get(employee_id=content["salesperson"])
             content["salesperson"] = salesperson
