@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-const TechnicianList = (props) => {
+const TechnicianList = () => {
     const [technician, setTechnician] = useState([]);
 
 const deleteTechnician = async (pk) => {
@@ -9,7 +9,8 @@ const deleteTechnician = async (pk) => {
     const response = fetch(technicianUrl, {method: 'DELETE'})
     if (response.ok) {
         const data = (await response).json();
-}}
+    }
+}
 
 const fetchData = async () => {
     const url = 'http://localhost:8080/api/technicians/';

@@ -11,7 +11,7 @@ function TechnicianForm () {
     }
 
     const lastNChange = (event) => {
-        const valueLast= event.target.value;
+        const valueLast = event.target.value;
         setLastName(valueLast);
     }
 
@@ -54,15 +54,15 @@ return (
             <form onSubmit={handleSubmit} id="create-technician-form">
                 <div className="form-floating mb-3">
                     <input required onChange={firstNChange} placeholder="first_name" type="text" id="first_name" className="form-control" value={firstName}/>
-                    <label htmlFor="name">First Name</label>
+                    <label htmlFor="first_name">First Name</label>
                 </div>
                 <div className="form-floating mb-3">
                     <input required onChange={lastNChange} placeholder="last_name" type="text" id="last_name" className="form-control" value={lastName}/>
-                    <label htmlFor="name">Last Name</label>
+                    <label htmlFor="last_name">Last Name</label>
                 </div>
                 <div className="form-floating mb-3">
                     <input required onChange={employeeChange} placeholder="employee_id" type="text" id="employee_id" className="form-control" value={employeeId}/>
-                    <label htmlFor="name">Employee ID</label>
+                    <label htmlFor="employee_id">Employee ID</label>
                 </div>
                 <div>
                     <button className="btn btn-primary">Create</button>

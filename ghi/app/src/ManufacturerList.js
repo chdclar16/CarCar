@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-const ManufacturerListing = (props) => {
+const ManufacturerListing = () => {
     const [manufacturer, setManufacturer] = useState([])
 
 const deleteManufacturer = async (pk) => {

@@ -48,7 +48,7 @@ class Appointment(models.Model):
         on_delete=models.CASCADE,
     )
     def __str__(self):
-        return self.customer #or self.vin?
+        return self.customer
 
     def finished(self):
         status = Status.objects.get(name="FINISHED")
