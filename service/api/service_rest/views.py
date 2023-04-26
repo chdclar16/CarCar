@@ -145,7 +145,7 @@ def appointment_list(request):
                 "vip": content["vin"] in AutomobileVO.objects.all().values_list('vin', flat=True) #flat=True takes tuples and make them a list
             })
             return JsonResponse(
-                appointments,
+                Appointment.objects.create(**content),
                 encoder=AppointmentEncoder,
                 safe=False,
             )

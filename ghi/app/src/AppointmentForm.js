@@ -43,11 +43,11 @@ function AppointmentForm () {
         event.preventDefault();
         const data = {}
         data.vin = vin;
+        data.customer = customer;
         data.date = date;
         data.time = time;
-        data.customer = customer;
-        date.reason = reason;
         data.technician = technician;
+        data.service_reason = reason;
 
         const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {
@@ -119,9 +119,10 @@ function AppointmentForm () {
                         </select>
                     </div>
                     <div className="form-floating mb-3">
-                        <textarea onChange={reasonChange} placeholder="Reason" required type="text" name="reason" id="reason" className="form-control" rows="5" value={reason}></textarea>
+                        <textarea onChange={reasonChange} placeholder="Reason" required type="text" name="service_reason" id="service_reason" className="form-control" rows="5" value={reason}></textarea>
                         <label htmlFor="starts">Reason</label>
                     </div>
+                    <button className="btn btn-primary">Create</button>
                 </form>
             </div>
             </div>

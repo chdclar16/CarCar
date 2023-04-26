@@ -48,9 +48,11 @@ return (
                         <td>{ appointment.customer }</td>
                         <td>{ appointment.date }</td>
                         <td>{ appointment.time }</td>
-                        <td>{ appointment.technician }</td>
-                        <td>{ appointment.reason }</td>
-                        <td><button onClick={() => deleteAppointment(appointment.id)}>Delete</button></td>
+                        <td>{ appointment.technician.first_name } { appointment.technician.last_name } ({ appointment.technician.employee_id })</td>
+                        <td>{ appointment.service_reason }</td>
+                        <td>{ appointment.vip ? 'Yes' : 'No' }</td>
+                        <td><button onClick={() => deleteAppointment(appointment.id)}>Canceled</button></td>
+                        <td><button onClick={() => deleteAppointment(appointment.id)}>Finished</button></td>
                     </tr>
                 )
             })}

@@ -39,6 +39,7 @@ class Appointment(models.Model):
         Status,
         related_name="appointments",
         on_delete=models.PROTECT,
+        default=1,
     )
 
     technician = models.ForeignKey(
