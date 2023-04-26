@@ -17,6 +17,7 @@ import NewSaleForm from './NewSaleForm';
 import SalesList from './SalesList';
 import AppointmentForm from './AppointmentForm';
 import AppointmentList from './AppointmentList';
+import SalesPersonHistory from './SalespersonHistory';
 
 function App(props) {
   return (
@@ -48,6 +49,7 @@ function App(props) {
           <Route path='sales'>
             <Route path='new' element={<NewSaleForm />} />
             <Route path='' element={<SalesList />} />
+            <Route path='history' element={<SalesPersonHistory />} />
           </Route>
         </Routes>
       </div>
