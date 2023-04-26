@@ -32,26 +32,26 @@ useEffect(() => {
 return (
     <>
     <table className="table table-striped" style={{ width: "100%" }}>
-                    <thead>
-                        <tr>
-                            <th>Employee ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {technician.map((technician, index) => {
-                            return (
-                                <tr key={index} list={technician.pk}>
-                                    <td>{ technician.employee_id }</td>
-                                    <td>{ technician.first_name }</td>
-                                    <td>{ technician.last_name }</td>
-                                    <td><button onClick={() => deleteTechnician(technician.id)}>Delete</button></td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {technician.map((technician, index) => {
+                return (
+                    <tr key={index} list={technician.pk}>
+                        <td>{ technician.employee_id }</td>
+                        <td>{ technician.first_name }</td>
+                        <td>{ technician.last_name }</td>
+                        <td><button onClick={() => deleteTechnician(technician.id)}>Delete</button></td>
+                    </tr>
+                )
+            })}
+        </tbody>
+    </table>
     </>
 )
 }

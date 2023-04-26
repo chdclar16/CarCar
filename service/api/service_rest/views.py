@@ -31,10 +31,12 @@ class AppointmentEncoder(ModelEncoder):
     properties = [
         "id",
         "customer",
-        "date_time",
+        "date",
+        "time",
         "service_reason",
         "vin",
         "technician",
+        "vip",
         "status"
     ]
     encoders = {
@@ -135,7 +137,13 @@ def appointment_list(request):
     else:
         content = json.loads(request.body)
         try:
-            appointments = Appointment.objects.create(**content)
+            # appointments = Appointment.objects.create(**content)
+            id = content["technician"]
+            technician = Technician.objects.get(id=id)
+            content.update({
+                "technician": technician,
+                "vip": content["vin"] in AutomobileVO.objects.all().values_list('vin', flat=True) #flat=True takes tuples and make them a list
+            })
             return JsonResponse(
                 appointments,
                 encoder=AppointmentEncoder,
