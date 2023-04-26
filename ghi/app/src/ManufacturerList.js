@@ -27,7 +27,7 @@ const fetchData = async () => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [manufacturer]);
 
         return (
             <>

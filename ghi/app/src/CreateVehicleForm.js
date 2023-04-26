@@ -25,7 +25,7 @@ export default function CreateVehicle() {
         }
         const response = await fetch(modelUrl, fetchConfig)
         if (response.ok){
-            const newModel = await response.json()
+            await response.json()
             setManufacturer('');
             setModel('');
             setPhoto('');
