@@ -6,6 +6,14 @@ Team:
 * Chad Manuel - Sales
 
 ## Design
+![Design](project-beta-Diagram.png)
+
+## Running the Project
+Requirements:
+
+* Docker
+* Google Chrome or any browser
+
 
 ## Service microservice
 
