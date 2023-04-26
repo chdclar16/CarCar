@@ -137,7 +137,7 @@ def appointment_list(request):
     else:
         content = json.loads(request.body)
         try:
-            created_status = Status.objects.get(name='Created')
+            created_status, _ = Status.objects.get_or_create(name='Created')
 
             id = content["technician"]
             technician = Technician.objects.get(id=id)
@@ -146,7 +146,8 @@ def appointment_list(request):
                 "vip": content["vin"] in AutomobileVO.objects.all().values_list('vin', flat=True)
             })
 
-            content['status'] = created_status
+            if created_status is not None:
+                content['status'] = created_status
 
             return JsonResponse(
                 Appointment.objects.create(**content),

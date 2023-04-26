@@ -48,6 +48,7 @@ function AppointmentForm () {
         data.time = time;
         data.technician = technician;
         data.service_reason = reason;
+        data.status = 1;
 
         const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {
@@ -77,6 +78,7 @@ function AppointmentForm () {
         if (response.ok) {
             const data = await response.json();
             setTechnicians(data.technicians)
+            console.log(data)
         }
     }
     useEffect (() => {
