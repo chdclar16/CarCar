@@ -39,7 +39,7 @@ class Appointment(models.Model):
         Status,
         related_name="appointments",
         on_delete=models.PROTECT,
-        default=1,
+        default=None,
     )
 
     technician = models.ForeignKey(
@@ -47,8 +47,15 @@ class Appointment(models.Model):
         related_name="technicians",
         on_delete=models.CASCADE,
     )
+
     def __str__(self):
         return self.customer
+
+    def save(self, *args, **kwargs):
+        if not self.status:
+            created_status, _ = Status.objects.get_or_create(name='Created')
+            self.status = created_status
+        super().save(*args, **kwargs)
 
     def finished(self):
         status = Status.objects.get(name="FINISHED")
@@ -63,9 +70,9 @@ class Appointment(models.Model):
     def get_api_url(self):
         return reverse("appointment_detail", kwargs={"id": self.id})
 
-    @classmethod
-    def create(cls, **kwargs):
-        kwargs["status"] = Status.objects.get(name="CREATED")
-        appointment = cls(**kwargs)
-        appointment.save()
-        return appointment
+    # @classmethod
+    # def create(cls, **kwargs):
+    #     kwargs["status"] = Status.objects.get(name="CREATED")
+    #     appointment = cls(**kwargs)
+    #     appointment.save()
+    #     return appointment

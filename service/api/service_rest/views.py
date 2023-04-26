@@ -137,13 +137,17 @@ def appointment_list(request):
     else:
         content = json.loads(request.body)
         try:
-            # appointments = Appointment.objects.create(**content)
+            created_status = Status.objects.get(name='Created')
+
             id = content["technician"]
             technician = Technician.objects.get(id=id)
             content.update({
                 "technician": technician,
-                "vip": content["vin"] in AutomobileVO.objects.all().values_list('vin', flat=True) #flat=True takes tuples and make them a list
+                "vip": content["vin"] in AutomobileVO.objects.all().values_list('vin', flat=True)
             })
+
+            content['status'] = created_status
+
             return JsonResponse(
                 Appointment.objects.create(**content),
                 encoder=AppointmentEncoder,
