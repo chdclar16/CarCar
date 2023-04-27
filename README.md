@@ -21,7 +21,7 @@ Team:
 ```
 git clone "URL HERE"
 ```
-3. In the terminal make sure you're in the project directory by using this command.
+3. Once the clone finishes, navigate to the correct directory by running this command in your terminal.
 ```
 cd project-beta
 ```
@@ -32,6 +32,7 @@ cd project-beta
     3. docker-compose up
 ```
 5. There should be 7 containers that are running(The containers should be green)
+6. Open up Chrome(Browser) and type in `http://localhost:3000/` in the address bar.
 
 ## Service microservice
 
