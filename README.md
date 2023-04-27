@@ -81,37 +81,283 @@ Team:
 | Set Appointment to canceled | PUT | `http://localhost:8080/api/Appointments/:id/cancel` |
 | Set Appointment to finished | PUT | `http://localhost:8080/api/Appointments/:id/finish` |
 
+---
+
+## Inventory Microservice
+
+
 
 #### Manufacturers API
 
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List manufacturers | GET | `http://localhost:8100/api/manufacturers/` |
-| Create a manufacturers | POST | `http://localhost:8100/api/manufacturers/` |
-| Delete a manufacturers | DELETE | `http://localhost:8100/api/manufacturers/:id` |
+| Detail of a manufacturer | GET | `http://localhost:8100/api/manufacturers/:id/` |
+| Create a manufacturer | POST | `http://localhost:8100/api/manufacturers/` |
+| Update a manufacturer | PUT | `http://localhost:8100/api/manufacturers/:id/` |
+| Delete a manufacturers | DELETE | `http://localhost:8100/api/manufacturers/:id/` |
 
+<details>
+<summary>GET: Listing of manufacturers
+</summary>
 
+Returns:
+```
+{
+	"manufacturers": [
+		{
+			"href": "/api/manufacturers/1/",
+			"id": 1,
+			"name": "Honda"
+		}
+	]
+}
+```
+</details>
+
+<details>
+<summary>GET: Get manufacturer details</summary>
+
+Returns:
+```
+{
+	"href": "/api/manufacturers/1/",
+	"id": 1,
+	"name": "Honda"
+}
+```
+</details>
+
+<details>
+<summary>POST: Creating a new manufacturer</summary>
+
+```
+{
+  "name": "Honda"
+}
+```
+Returns:
+```
+{
+	"href": "/api/manufacturers/1/",
+	"id": 1,
+	"name": "Honda"
+}
+```
+</details>
+
+<details>
+<summary>PUT: Updating a manufacturer</summary>
+
+```
+{
+  "name": "Toyota"
+}
+```
+</details>
 
 #### Models API
 
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List models | GET | `http://localhost:8100/api/models/` |
-| Create a models | POST | `http://localhost:8100/api/models/` |
-| Delete a models | DELETE | `http://localhost:8100/api/models/:id` |
+| Detail of a model | GET | `http://localhost:8100/api/models/:id/` |
+| Create a model | POST | `http://localhost:8100/api/models/` |
+| Update a model | PUT | `http://localhost:8100/api/models/:id/` |
+| Delete a model | DELETE | `http://localhost:8100/api/models/:id/` |
+
+<details>
+<summary>GET: Listing of models
+</summary>
+
+Returns:
+```
+  {
+	"models": [
+		{
+			"href": "/api/models/1/",
+			"id": 1,
+			"name": "CR-V",
+			"picture_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_ji4NaKoArMM_ObGKvLTtN9hYjUhGQLslapXctzqle10Ghjx",
+			"manufacturer": {
+				"href": "/api/manufacturers/1/",
+				"id": 1,
+				"name": "Honda"
+			}
+		}
+	]
+}
+```
+</details>
+
+<details>
+<summary>GET: Get model details</summary>
+
+Returns:
+```
+{
+	"href": "/api/models/1/",
+	"id": 1,
+	"name": "CR-V",
+	"picture_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_ji4NaKoArMM_ObGKvLTtN9hYjUhGQLslapXctzqle10Ghjx",
+	"manufacturer": {
+		"href": "/api/manufacturers/1/",
+		"id": 1,
+		"name": "Honda"
+	}
+}
+```
+</details>
+
+<details>
+<summary>POST: Creating a new model</summary>
+
+```
+  {
+  "name": "CR-V",
+  "picture_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_ji4NaKoArMM_ObGKvLTtN9hYjUhGQLslapXctzqle10Ghjx",
+  "manufacturer_id": 1
+}
+```
+Returns:
+```
+    {
+	"href": "/api/models/1/",
+	"id": 1,
+	"name": "CR-V",
+	"picture_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_ji4NaKoArMM_ObGKvLTtN9hYjUhGQLslapXctzqle10Ghjx",
+	"manufacturer": {
+		"href": "/api/manufacturers/1/",
+		"id": 1,
+		"name": "Honda"
+	}
+}
+```
+</details>
+
+<details>
+<summary>PUT: Updating a model by ID</summary>
+
+```
+  {
+  "name": "Passport",
+  "picture_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEt2wRcjI0lwrZ4GM8T8NagukQ3UxX2OQirxUCMVvcAVYMQnYx"
+}
+```
+</details>
 
 #### Automobiles API
 
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List automobiles | GET | `http://localhost:8100/api/automobiles/` |
+| Detail of automobile | GET | `http://localhost:8100/api/automobiles/:vin/` |
 | Create a automobile | POST | `http://localhost:8100/api/automobiles/` |
-| Delete a automobile | DELETE | `http://localhost:8100/api/automobiles/:id` |
+| Update a automobile | PUT | `http://localhost:8100/api/automobiles/:vin/` |
+| Delete a automobile | DELETE | `http://localhost:8100/api/automobiles/:vin/` |
 
+<details>
+<summary>GET: Listing of automobile</summary>
 
----
+Returns:
+```
+  {
+	"autos": [
+		{
+			"href": "/api/automobiles/7D345DFKL/",
+			"id": 4,
+			"color": "grey",
+			"year": 2020,
+			"vin": "7D345DFKL",
+			"model": {
+				"href": "/api/models/1/",
+				"id": 1,
+				"name": "CR-V",
+				"picture_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_ji4NaKoArMM_ObGKvLTtN9hYjUhGQLslapXctzqle10Ghjx",
+				"manufacturer": {
+					"href": "/api/manufacturers/1/",
+					"id": 1,
+					"name": "Honda"
+				}
+			},
+			"sold": false
+		}
+	]
+}
+```
+</details>
 
-## Inventory Microservice
+<details>
+<summary>GET: Get automobile detail by VIN</summary>
+
+Returns:
+```
+{
+	"href": "/api/automobiles/7D345DFKL/",
+	"id": 4,
+	"color": "grey",
+	"year": 2020,
+	"vin": "7D345DFKL",
+	"model": {
+		"href": "/api/models/1/",
+		"id": 1,
+		"name": "CR-V",
+		"picture_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_ji4NaKoArMM_ObGKvLTtN9hYjUhGQLslapXctzqle10Ghjx",
+		"manufacturer": {
+			"href": "/api/manufacturers/1/",
+			"id": 1,
+			"name": "Honda"
+		}
+	},
+	"sold": false
+}
+```
+</details>
+
+<details>
+<summary>POST: Creating a new automobile</summary>
+
+```
+  {
+  "color": "grey",
+  "year": 2020,
+  "vin": "7D345DFKL",
+  "model_id": 1
+}
+```
+Returns:
+```
+    {
+	"href": "/api/automobiles/7D345DFKL/",
+	"id": 4,
+	"color": "grey",
+	"year": 2020,
+	"vin": "7D345DFKL",
+	"model": {
+		"href": "/api/models/1/",
+		"id": 1,
+		"name": "CR-V",
+		"picture_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_ji4NaKoArMM_ObGKvLTtN9hYjUhGQLslapXctzqle10Ghjx",
+		"manufacturer": {
+			"href": "/api/manufacturers/1/",
+			"id": 1,
+			"name": "Honda"
+		}
+	},
+	"sold": false
+}
+```
+</details>
+
+<details>
+<summary>PUT: Updating an automobile by VIN</summary>
+
+```
+  {
+  "color": "blue",
+  "year": 2018
+}
+```
 
 ---
 ## Service Microservice
@@ -122,12 +368,12 @@ The `AutomobileVO` model has the properties of `import_href`, `color`, `year`, a
 
 The `Technician` model has the properties of `first_name`, `last_name`, and `employee_id`.  This model is used to create and store all data related to the technician(s).
 
-The `Appointment` model has the properties of `date`, `time`, `service_reason`, `vin`, `customer`, `vip`, `status`, and `technician`.  This model is used to create and store data for all appointments made.  The date, time, service_reason, and customer fields are used to fill I basic information of appointment.  The vin is used to to keep track of the vehicle vin while also being used in conjunction with the vip property to check whether a vehicle is in the inventory and does it get **vip treatment**.  The technician Foreignkey  so that when the appointment is made there is a technician employee chosen as there can’t be an appointment if there’s no one designated to check the vehicle.
+The `Appointment` model has the properties of `date`, `time`, `service_reason`, `vin`, `customer`, `vip`, `status`, and `technician`.  This model is used to create and store data for all appointments made.  The date, time, service_reason, and customer fields are used to fill I basic information of appointment.  The vin is used to to keep track of the automobile vin while also being used in conjunction with the vip property to check whether a automobile is in the inventory and does it get **vip treatment**.  The technician Foreignkey  so that when the appointment is made there is a technician employee chosen as there can’t be an appointment if there’s no one designated to check the automobile.
 
 Extra Note:
 The `status` property is set to **default** on `“Created”` when an appointment is made so that it can be kept track of alongside with the options to change to `“Finished”` or `“Canceled”`.
 
-The `vip` property is **default** set to `“False”` because there are cases where the vehicle designated for the appointment was not from the dealership inventory.
+The `vip` property is **default** set to `“False”` because there are cases where the automobile designated for the appointment was not from the dealership inventory.
 
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
@@ -266,10 +512,32 @@ Returns:
 ```
 </details>
 
+<details>
 <summary>PUT: Updating status of appointment</summary>
 
+Returns:
+```
+  {
+	"id": 11,
+	"customer": "Gabriel M",
+	"date": "12-30-2023",
+	"time": "11:00:00",
+	"service_reason": "Check Engine Light",
+	"vin": "7D345DFKL",
+	"vip": false,
+	"status": "Finished",
+	"technician": {
+		"id": 1,
+		"first_name": "James",
+		"last_name": "Dun",
+		"employee_id": "AC773L"
+	},
+}
+```
+</details>
 
 ---
+
 ## Sales Microservice
 
 
@@ -510,4 +778,3 @@ Once successfully created, the output should be as follows:
 </details>
 
 ### AutomobileVO (Value Object)
-
