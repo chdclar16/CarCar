@@ -112,7 +112,13 @@ Team:
 ---
 
 ## Inventory Microservice
+The inventory microservice is consisted of three models: Manufacturer, VehicleModel, and Automobile. The inventory microservice handles all of the data of all the vehicles in the app.
 
+The `Manufacturer` model has a single property, `name` which holds the data to all manufacturer types available in the inventory.
+
+The `VehicleModel` has the properties of `name`, `picture_url`, `manufacturer`. The manufacturer property is a foreign key which refers to the `Manufacturer` model for the manufacturer name. The `name` property takes an input for the vehicle model's name. The `picture_url` takes an input of a picture url.
+
+The `Automobile` model has the properties of `color`, `year`, `vin`, `sold`, and `model`. Other microservices such as the service and sales microservice use a poller in order to retrieve information from this model. The `model` property is a foreign key which refers to the `VehicleModel` for the vehicle model's name.
 
 
 ---
@@ -497,6 +503,10 @@ Once successfully created, the output should be as follows:
 	"id": 3
 }
 
+```
+
+</details>
+
 <details>
 <summary>DELETE: Remove a sale</summary>
 
@@ -506,7 +516,4 @@ Once successful, the output should be as follows:
 	"deleted": true
 }
 ```
-</details>
-```
-
 </details>
