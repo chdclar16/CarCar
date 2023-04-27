@@ -48,11 +48,13 @@ export default function CustomerForm() {
         const response = await fetch('http://localhost:8090/api/customers/', fetchConfig)
         if (response.ok) {
             await response.json();
-
+            alert('Customer has been created!')
             setFirstName('')
             setLastName('')
             setAddress('')
             setPhoneNumber('')
+        } else {
+            alert('Customer creation failed')
         }
     }
 

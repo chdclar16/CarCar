@@ -39,10 +39,12 @@ export default function SalesPersonForm(){
         const response = await fetch('http://localhost:8090/api/salespeople/', fetchConfig);
         if (response.ok) {
             await response.json();
-
+            alert('Sales Person Created!')
             setEmployeeId('');
             setFirstName('');
             setLastName('');
+        } else {
+            alert('Sales Person Creation Failed!')
         }
     }
 

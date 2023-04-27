@@ -83,6 +83,7 @@ export default function NewSaleForm(){
             };
             const deleteResponse = await fetch(deleteUrl, fetchDeleteConfig);
             if (deleteResponse.ok) {
+                alert('Sale has been recorded')
                 setPrice('');
                 setSalesPerson('');
                 setCustomer('');
