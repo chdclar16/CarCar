@@ -113,7 +113,6 @@ Team:
 
 ## Inventory Microservice
 
-#### Manufacturer
 
 
 ---
@@ -274,24 +273,26 @@ Returns:
 
 ---
 ## Sales Microservice
+The sales microservice consists four models with one being a value object. These models are as follows: `Salespeople`, `Customers`, `Sale`, and `AutomobileVO` being the value object.
 
+The `Salespeople` model consists of three properties: `first_name`, `last_name`, and `employee_id`. These properties are designed for create and store data related to sales people.
+
+The `Customer` model consists of four  properties: `first_name`, `last_name`, `address`, and `phone_number`. These properties are made to create and store data related to customers.
+
+The `Sale` model consists of four properties: `automobile`, `saleperson`, `customer`, and `price`. This model is dependent on the other model's data in order to create new instances of sale. The `automobile` property is a foreign key and is dependent on the `AutomobileVO` model to be updated with the automobile's VIN. The `salesperson` property is also a foreign key is dependent from `Salesperson` model to provide the sales person's name. The `customer` property is also a foreign key and is dependent the `Customer` to provide the customer's name. Finally, the `price` property takes in an input to establish the price of the automobile.
+
+The `AutomobileVO` acts as a representation of the `Automobile` model from the inventory microservice. It holds the VIN information from the original model and is updated once every sixty seconds using a poller. The sales microservice can maintain a copy of the automobile data that is consistent with the inventory microservice because of the automobile value object.
 
 #### Sales People
-The Salesperson model has two properties:
-
-* "name": Salesperson's name
-* "employee_number": Salesperson's unique employee number.
-
-<details>
-<summary>Salespeople List</summary>
-
-To get access to the Sales Person list, a **GET** request must be made to `http://localhost:8090/api/salespeople/`
 
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List salespeople | GET | `http://localhost:8090/api/salespeople/` |
+| Create a sales person | POST | `http://localhost:8090/api/salespeople/` |
+| Delete a sales persone | DELETE | `http://localhost:8090/api/salespeople/:id` |
 
-
+<details>
+<summary>GET: List of sales people</summary>
 
 The Json returned should be as follows:
 ```
@@ -311,22 +312,15 @@ The Json returned should be as follows:
 		}
 	]
 }
-
 ```
 </details>
 
 
 
 <details>
-<summary>Create Sales Person</summary>
+<summary>POST: Create a sales person</summary>
 
-To create a new sales person, a **POST** request must be made to `http://localhost:8090/api/salespeople/`
-
-| Action | Method | URL |
-| ----------- | ----------- | ----------- |
-| Create Sales Person| POST | `http://localhost:8090/api/salespeople/` |
-
-The Json body inputted to create a sales person should be as follows:
+Input:
 ```
 {
 	"first_name": "Michelle",
@@ -348,23 +342,26 @@ Once successfully created, the output should be as follows:
 ```
 </details>
 
-#### Customers
-The Customer model has three properties:
-
-* "first_name": Customer's first name
-* "last_name": Customer's last name
-* "address": Customer's address
-* "phone": Customer's phone number
-
 <details>
-<summary>Customer List</summary>
+<summary>DELETE: Remove a sales person</summary>
 
-To get access to the Customer list, a **GET** request must be made to `http://localhost:8090/api/customers/`
+Once successful, the output should be as follows:
+```
+{
+	"deleted": true
+}
+```
+</details>
 
+#### Customers
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
-| List salespeople | GET | `http://localhost:8090/api/customers/` |
+| List Customers | GET | `http://localhost:8090/api/customers/` |
+| Create a Customer | POST | `http://localhost:8090/api/customers/` |
+| Delete a Customer | DELETE | `http://localhost:8090/api/customers/:id` |
 
+<details>
+<summary>GET: List of customers</summary>
 
 The Json returned should be as follows:
 ```
@@ -384,13 +381,8 @@ The Json returned should be as follows:
 </details>
 
 <details>
-<summary>Create Customer</summary>
+<summary>POST: Create Customer</summary>
 
-To create a new customer, a **POST** request must be made to `http://localhost:8090/api/customers/`
-
-| Action | Method | URL |
-| ----------- | ----------- | ----------- |
-| Create Sales Person| POST | `http://localhost:8090/api/customers/` |
 
 The Json body inputted to create a customer should be as follows:
 ```
@@ -416,23 +408,26 @@ Once successfully created, the output should be as follows:
 ```
 </details>
 
-### Sale
-The Sale model consolidates the information from other models such as the salesperson, customer, and automobileVO models. Overall, the sale model has four properties:
-
-* "automobile": Vin number of the automobile in the inventory
-* "salesperson": Sales person's ID
-* "customer": Customer's name
-* "price": Price of the vehicle
-
 <details>
-<summary>Sale List</summary>
+<summary>DELETE: Remove a Customer</summary>
 
-To get access to the Sale list, a **GET** request must be made to `http://localhost:8090/api/sales/`
+Once successful, the output should be as follows:
+```
+{
+	"deleted": true
+}
+```
+</details>
 
+### Sale
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
-| List salespeople | GET | `http://localhost:8090/api/sales/` |
+| List Sales | GET | `http://localhost:8090/api/sale/` |
+| Create a Sale | POST | `http://localhost:8090/api/sale/` |
+| Delete a Sale | DELETE | `http://localhost:8090/api/sale/:id` |
 
+<details>
+<summary>GET: List of sales</summary>
 
 The Json returned should be as follows:
 ```
@@ -466,14 +461,7 @@ The Json returned should be as follows:
 </details>
 
 <details>
-<summary>Creating a Sale</summary>
-
-To create a sale, a **POST** request must be made to `http://localhost:8090/api/sales/`
-
-| Action | Method | URL |
-| ----------- | ----------- | ----------- |
-| Create salespeople | POST | `http://localhost:8090/api/sales/` |
-
+<summary>POST: Creating a Sale</summary>
 
 The Json body inputted to create a sale should be as follows:
 ```
@@ -508,9 +496,17 @@ Once successfully created, the output should be as follows:
 	"price": "Price of Automobile",
 	"id": 3
 }
+
+<details>
+<summary>DELETE: Remove a sale</summary>
+
+Once successful, the output should be as follows:
+```
+{
+	"deleted": true
+}
+```
+</details>
 ```
 
 </details>
-
-### AutomobileVO (Value Object)
-
