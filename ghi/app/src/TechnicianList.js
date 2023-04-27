@@ -8,7 +8,7 @@ const deleteTechnician = async (pk) => {
     const technicianUrl = `http://localhost:8080/api/technicians/${pk}/`
     const response = fetch(technicianUrl, {method: 'DELETE'})
     if (response.ok) {
-        const data = (await response).json();
+        await response.json();
     }
 }
 
@@ -28,7 +28,7 @@ const fetchData = async () => {
 
 useEffect(() => {
     fetchData();
-}, []);
+}, [technician]);
 
 return (
     <>

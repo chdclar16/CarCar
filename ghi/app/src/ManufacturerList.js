@@ -8,7 +8,7 @@ const deleteManufacturer = async (pk) => {
     const manufacturerUrl = `http://localhost:8100/api/manufacturers/${pk}/`
     const response = fetch(manufacturerUrl, {method: 'DELETE'})
     if (response.ok) {
-        const data = (await response).json();
+        await response.json();
 }}
 
 const fetchData = async () => {

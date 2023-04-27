@@ -20,15 +20,17 @@ import AppointmentList from './AppointmentList';
 import SalesPersonHistory from './SalespersonHistory';
 import ServiceHistory from './ServiceHistory';
 
-function App(props) {
+function App() {
   return (
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/manufacturers" element={<ManufacturerList />} />
-          <Route path="/manufacturers/new" element={<ManufacturerForm />} />
+          <Route path="manufacturers" >
+            <Route path="" element={<ManufacturerList />} />
+            <Route path="new" element={<ManufacturerForm />} />
+          </Route>
           <Route path="model" >
             <Route path="" element={<VehicleList />} />
             <Route path="new" element={<CreateVehicleForm />} />
@@ -39,11 +41,15 @@ function App(props) {
             <Route path='' element={<SalesPeopleList />} />
             <Route path="new" element={<SalesPersonForm />} />
           </Route>
-          <Route path="technicians" element={<TechnicianList />} />
-            <Route path="/technicians/new" element={<TechnicianForm />} />
-          <Route path="/appointments" element={<AppointmentList />} />
-            <Route path="/appointments/new" element={<AppointmentForm />} />
-          <Route path="/servicehistory" element={<ServiceHistory />} />
+          <Route path="technicians" >
+            <Route path="" element={<TechnicianList />} />
+            <Route path="new" element={<TechnicianForm />} />
+            </Route>
+          <Route path="appointments" >
+            <Route path ="" element={<AppointmentList />} />
+            <Route path="new" element={<AppointmentForm />} />
+            <Route path="history" element={<ServiceHistory />} />
+            </Route>
           <Route path="customers" >
             <Route path='' element={<CustomerList />} />
             <Route path='new' element={<CustomerForm />} />

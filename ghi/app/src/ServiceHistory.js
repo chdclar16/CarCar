@@ -14,7 +14,9 @@ function ServiceHistory () {
 
     const searchFilter = (event) => {
         event.preventDefault();
+        if (search !== "") {
         setFiltered(appointments.filter((appointment) => appointment.vin.includes(search)));
+        }
     };
 
     const fetchData = async () => {
@@ -33,7 +35,7 @@ function ServiceHistory () {
 
     useEffect (() => {
         fetchData();
-    }, []);
+    }, [search]);
 
     return (
         <>
@@ -48,6 +50,7 @@ function ServiceHistory () {
                     </div>
                 </div>
             </form>
+            {filtered.length > 0 ? (
                 <div>
                 <table className="table table-striped" style={{ width: "100%" }}>
                     <thead>
@@ -73,13 +76,16 @@ function ServiceHistory () {
                                     <td>{`${appointment.technician.first_name} ${appointment.technician.last_name} (${appointment.technician.employee_id})`}</td>
                                     <td>{ appointment.service_reason }</td>
                                     <td>{ appointment.vip ? 'Yes' : 'No' }</td>
-                                    <td>{ appointment.status.name }</td>
+                                    <td>{ appointment.status }</td>
                                 </tr>
                             )
                         })}
                     </tbody>
                 </table>
-            </div>
+                </div>
+            ) : (
+                <p>Please input a valid vehicle VIN number. If no list is shown, please make sure the VIN is correct</p>
+            )}
         </>
     )
 }

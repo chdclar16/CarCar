@@ -37,7 +37,7 @@ function TechnicianForm () {
         }
         const response = await fetch(technicianUrl, fetchConfig)
         if (response.ok) {
-            const data = await response.json();
+            await response.json();
 
             setFirstName('');
             setLastName('');
