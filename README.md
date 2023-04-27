@@ -118,7 +118,7 @@ The `Manufacturer` model has a single property, `name` which holds the data to a
 
 The `VehicleModel` has the properties of `name`, `picture_url`, `manufacturer`. The manufacturer property is a foreign key which refers to the `Manufacturer` model for the manufacturer name. The `name` property takes an input for the vehicle model's name. The `picture_url` takes an input of a picture url.
 
-The `Automobile` model has the properties of `color`, `year`, `vin`, `sold`, and `model`. Other microservices such as the service and sales microservice use a poller in order to retrieve information from this model. The `model` property is a foreign key which refers to the `VehicleModel` for the vehicle model's name.
+The `Automobile` model has the properties of `color`, `year`, `vin`, `sold`, and `model`. Other microservices such as the service and sales microservice use a poller in order to retrieve information from this model. The `model` property is a foreign key which refers to the `VehicleModel` for the vehicle model's name. The `color` property takes an input for the vehicle's color. The `year` property takes in an integer for the vehicle's year. The `vin` property takes an input for the VIN number of the vehicle. The `sold` property is set to false by default.
 
 
 ---
