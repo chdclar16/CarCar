@@ -33,7 +33,7 @@ cd project-beta
 ```
 5. There should be 7 containers that are running(The containers should be green)
 6. Open up Chrome(Browser) and type in `http://localhost:3000/` in the address bar.
-## API
+## API Routes
 <details>
 <summary>Salespeople API</summary>
 
@@ -78,12 +78,15 @@ cd project-beta
 | Set Appointment to finished | PUT | `http://localhost:8090/api/Appointments/:id/finish` |
 
 </details>
-## Service microservice
+
+## Inventory Microservice
+
+## Service Microservice
 
 Explain your models and integration with the inventory
 microservice, here.
 
-## Sales microservice
+## Sales Microservice
 
 Explain your models and integration with the inventory
 microservice, here.
