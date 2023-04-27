@@ -8,6 +8,7 @@ function AppointmentForm () {
     const [time, setTime] = useState('');
     const [technician, setTechnician] = useState('');
     const [reason, setReason] = useState('');
+    const [status] = useState('Created');
 
     const vinChange = (event) => {
         const valueVin = event.target.value;
@@ -48,7 +49,7 @@ function AppointmentForm () {
         data.time = time;
         data.technician = technician;
         data.service_reason = reason;
-        data.status = 1;
+        data.status = status;
 
         const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {

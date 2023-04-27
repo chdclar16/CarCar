@@ -22,17 +22,17 @@ const fetchData = async () => {
 
     return (
         <>
-        {automobile && automobile.length ? (
+            {automobile && automobile.length ? (
             <div className="table-responsive">
             <table className="table table-striped" style={{ width: "100%" }}>
             <thead>
                 <tr>
-                    <th scope="col">Vin</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Manufacturer</th>
-                    <th scope="col">Sold</th>
+                    <th>Vin</th>
+                    <th>Color</th>
+                    <th>Year</th>
+                    <th>Model</th>
+                    <th>Manufacturer</th>
+                    <th>Sold</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@ const fetchData = async () => {
             </table>
             </div>
         ) : (
-            <p>Loading inventory...</p>
+            <p>Inventory is empty...</p>
         )}
         </>
         )};
