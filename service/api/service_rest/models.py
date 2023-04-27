@@ -25,7 +25,7 @@ class Appointment(models.Model):
     date = models.CharField(max_length=30, default="")
     time = models.CharField(max_length=30, default="")
     service_reason = models.TextField()
-    vin = models.CharField(max_length=200)
+    vin = models.CharField(max_length=17)
     customer = models.CharField(max_length=150)
     vip = models.BooleanField(default=False)
     status = models.CharField(max_length=50, default="Created")
