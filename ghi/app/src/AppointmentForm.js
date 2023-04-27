@@ -78,7 +78,6 @@ function AppointmentForm () {
         if (response.ok) {
             const data = await response.json();
             setTechnicians(data.technicians)
-            console.log(data)
         }
     }
     useEffect (() => {
