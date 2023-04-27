@@ -62,7 +62,7 @@ export default function NewSaleForm(){
         data.salesperson = salesPerson
         data.customer = customer
         data.price = price
-        console.log(data)
+
 
         const fetchConfig = {
             method: 'post',
@@ -72,10 +72,8 @@ export default function NewSaleForm(){
             },
         }
         const response  = await fetch('http://localhost:8090/api/sales/', fetchConfig)
-        console.log({"response": response})
         if (response.ok) {
             const data = await response.json();
-            console.log({"salesData": data})
             const deleteUrl = `http://localhost:8100/api/automobiles/${data.automobile.vin}`
             const fetchDeleteConfig = {
                 method: 'delete',
