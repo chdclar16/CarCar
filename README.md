@@ -33,6 +33,34 @@ cd project-beta
 ```
 5. There should be 7 containers that are running(The containers should be green)
 6. Open up Chrome(Browser) and type in `http://localhost:3000/` in the address bar.
+## API
+<details>
+<summary>Salespeople API</summary>
+
+| Action | Method | URL |
+| ----------- | ----------- | ----------- |
+| List salespeople | GET | `http://localhost:8090/api/salespeople/` |
+| Create a salespeople | POST | `http://localhost:8090/api/salespeople/` |
+| Delete a salespeople | DELETE | `http://localhost:8090/api/salespeople/:id` |
+
+<details>
+<summary>Customer API</summary>
+
+| Action | Method | URL |
+| ----------- | ----------- | ----------- |
+| List Customers | GET | `http://localhost:8090/api/customers/` |
+| Create a Customer | POST | `http://localhost:8090/api/customers/` |
+| Delete a Customer | DELETE | `http://localhost:8090/api/customers/:id` |
+
+<details>
+<summary>Sale API</summary>
+
+| Action | Method | URL |
+| ----------- | ----------- | ----------- |
+| List Sales | GET | `http://localhost:8090/api/sales/` |
+| Create a Sale | POST | `http://localhost:8090/api/sales/` |
+| Delete a Sale | DELETE | `http://localhost:8090/api/sales/:id` |
+
 
 ## Service microservice
 
