@@ -113,6 +113,9 @@ Team:
 
 ## Inventory Microservice
 
+#### Manufacturer
+
+
 ---
 ## Service Microservice
 
