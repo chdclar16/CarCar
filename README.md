@@ -43,6 +43,7 @@ cd project-beta
 | Create a salespeople | POST | `http://localhost:8090/api/salespeople/` |
 | Delete a salespeople | DELETE | `http://localhost:8090/api/salespeople/:id` |
 
+</details>
 <details>
 <summary>Customer API</summary>
 
@@ -52,6 +53,8 @@ cd project-beta
 | Create a Customer | POST | `http://localhost:8090/api/customers/` |
 | Delete a Customer | DELETE | `http://localhost:8090/api/customers/:id` |
 
+</details>
+
 <details>
 <summary>Technician API</summary>
 
@@ -60,6 +63,8 @@ cd project-beta
 | List Technicians | GET | `http://localhost:8090/api/technicians/` |
 | Create a Technician | POST | `http://localhost:8090/api/Technicians/` |
 | Delete a Technician | DELETE | `http://localhost:8090/api/Technicians/:id` |
+
+</details>
 
 <details>
 <summary>Appointments API</summary>
@@ -72,7 +77,7 @@ cd project-beta
 | Set Appointment to canceled | PUT | `http://localhost:8090/api/Appointments/:id/cancel` |
 | Set Appointment to finished | PUT | `http://localhost:8090/api/Appointments/:id/finish` |
 
-
+</details>
 ## Service microservice
 
 Explain your models and integration with the inventory
