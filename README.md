@@ -53,13 +53,24 @@ cd project-beta
 | Delete a Customer | DELETE | `http://localhost:8090/api/customers/:id` |
 
 <details>
-<summary>Sale API</summary>
+<summary>Technician API</summary>
 
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
-| List Sales | GET | `http://localhost:8090/api/sales/` |
-| Create a Sale | POST | `http://localhost:8090/api/sales/` |
-| Delete a Sale | DELETE | `http://localhost:8090/api/sales/:id` |
+| List Technicians | GET | `http://localhost:8090/api/technicians/` |
+| Create a Technician | POST | `http://localhost:8090/api/Technicians/` |
+| Delete a Technician | DELETE | `http://localhost:8090/api/Technicians/:id` |
+
+<details>
+<summary>Appointments API</summary>
+
+| Action | Method | URL |
+| ----------- | ----------- | ----------- |
+| List Appointments | GET | `http://localhost:8090/api/Appointments/` |
+| Create an Appointment | POST | `http://localhost:8090/api/Appointments/` |
+| Delete an Appointment | DELETE | `http://localhost:8090/api/Appointments/:id` |
+| Set Appointment to canceled | PUT | `http://localhost:8090/api/Appointments/:id/cancel` |
+| Set Appointment to finished | PUT | `http://localhost:8090/api/Appointments/:id/finish` |
 
 
 ## Service microservice
