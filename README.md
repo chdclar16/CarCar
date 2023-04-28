@@ -311,7 +311,7 @@ Returns:
 
 <details>
 <summary>PUT: Updating an automobile by VIN</summary>
-</defails>
+</details>
 
 ---
 ## Service Microservice
