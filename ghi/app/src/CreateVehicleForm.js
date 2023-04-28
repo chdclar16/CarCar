@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 
 
 export default function CreateVehicle() {
-    const [manufacturers, setManufacturers] = useState([])
-    const [manufacturer, setManufacturer] = useState('')
-    const [model, setModel] = useState('')
-    const [photo, setPhoto] = useState('')
+    const [manufacturers, setManufacturers] = useState([]);
+    const [manufacturer, setManufacturer] = useState('');
+    const [model, setModel] = useState('');
+    const [photo, setPhoto] = useState('');
+    const [madeModel, setMadeModel] = useState(false);
+    const [failedModel, setFailedModel] = useState(false);
 
     const handleSubmit = async(event) => {
         event.preventDefault()
@@ -30,6 +32,9 @@ export default function CreateVehicle() {
             setModel('');
             setPhoto('');
             setManufacturer('');
+            setMadeModel(true);
+        } else if (response.status !== 200) {
+            setFailedModel(true);
         }
     }
 
@@ -58,6 +63,17 @@ export default function CreateVehicle() {
         fetchData()
     }, [])
 
+    let messageClasses = 'alert alert-success d-none mb-0'
+    let formClasses = '';
+    let messageFailedClasses = 'alert alert-danger d-none mb-0'
+    let anotherForm = 'btn btn-primary d-none'
+    if (madeModel) {
+        messageClasses = 'alert alert-success mb-0'
+        formClasses = 'd-none'
+        anotherForm = 'btn btn-primary'
+    } else if (failedModel) {
+        messageFailedClasses = 'alert alert-danger mb-0'
+    }
 
     return (
     <>
@@ -65,7 +81,7 @@ export default function CreateVehicle() {
         <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
             <h1>Create a Vehicle Model </h1>
-            <form onSubmit={handleSubmit} id="create-vehicle-form">
+            <form onSubmit={handleSubmit} className={formClasses} id="create-vehicle-form">
                 <div className="form-floating mb-3">
                 <input onChange={handleModelChange} value={model} placeholder="Vehicle Model" required type="text" name="model" id="model" className="form-control" />
                 <label htmlFor="model">Vehicle Name</label>
@@ -88,6 +104,13 @@ export default function CreateVehicle() {
                 </div>
                 <button className="btn btn-primary">Create</button>
             </form>
+            <div className={messageClasses} id="success-message">
+                Successfully Created A New Model!
+            </div>
+            <button type="button" className={anotherForm} onClick={() => setMadeModel(false)}>Click here for another Model</button>
+            <div className={messageFailedClasses} id="unsuccessful-message">
+                Unsuccessful creating a new model! Double Check inputs
+            </div>
             </div>
         </div>
         </div>

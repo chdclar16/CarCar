@@ -16,7 +16,7 @@ export default function SalesPeopleList() {
     }
     useEffect( () => {
         fetchData()
-    }, [salesPerson])
+    }, [])
 
     return (
         <>

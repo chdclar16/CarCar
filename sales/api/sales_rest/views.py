@@ -150,30 +150,42 @@ def sales_list(request):
         safe=False
     )
     else:
-        content = json.loads(request.body)
-        try:
+            content = json.loads(request.body)
 
-            auto = AutomobileVO.objects.get(vin=content["automobile"])
-            content["automobile"] = auto
+            try:
+                auto = AutomobileVO.objects.get(vin=content["automobile"])
+                content["automobile"] = auto
+            except AutomobileVO.DoesNotExist:
+                return JsonResponse(
+                    {"message": "Invalid Automobile VIN"},
+                    status=400,
+                )
 
-            salesperson = Salesperson.objects.get(employee_id=content["salesperson"])
-            content["salesperson"] = salesperson
+            try:
+                salesperson = Salesperson.objects.get(employee_id=content["salesperson"])
+                content["salesperson"] = salesperson
+            except Salesperson.DoesNotExist:
+                return JsonResponse(
+                    {"message": "Invalid SalesPerson ID"},
+                    status=400,
+                )
 
-            customer = Customer.objects.get(id=content["customer"])
-            content["customer"] = customer
+            try:
+                customer = Customer.objects.get(id=content["customer"])
+                content["customer"] = customer
+            except Customer.DoesNotExist:
+                return JsonResponse(
+                    {"message": "Invalid Information"},
+                    status=400,
+                )
 
-        except AutomobileVO.DoesNotExist or Salesperson.DoesNotExist or Customer.DoesNotExist:
+            sold = Sale.objects.create(**content)
             return JsonResponse(
-                {"message": "Invalid Information"},
-                status=400,
-            )
+                    sold,
+                    encoder=SalesEncoder,
+                    safe=False
+                )
 
-        sold = Sale.objects.create(**content)
-        return JsonResponse(
-                sold,
-                encoder=SalesEncoder,
-                safe=False
-            )
 
 @require_http_methods(["GET","DELETE"])
 def sale_description(request, id):
