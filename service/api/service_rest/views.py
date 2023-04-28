@@ -39,17 +39,6 @@ class AppointmentEncoder(ModelEncoder):
     }
 
 
-@require_http_methods(["GET"])
-def Automobile_list(request):
-    if request.method == "GET":
-        automobile = AutomobileVO.objects.all()
-        return JsonResponse(
-            {"autos": automobile},
-            encoder=AutomobileVO,
-            safe=False,
-        )
-
-
 @require_http_methods(["GET", "POST"])
 def list_technicians(request):
     if request.method == "GET":
