@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function ManufacturerForm () {
     const [name, setName] = useState('');
     const [hasManufacturer, setManufacturer] = useState(false);
+    const [failedCreate, setFailedCreate] = useState(false);
 
     const nameChange = (event) => {
         const valueName = event.target.value;
@@ -30,8 +31,10 @@ function ManufacturerForm () {
 
             setName('');
             setManufacturer(true);
-
+        } else if (response.status !== 200) {
+            setFailedCreate(true);
         }
+
     }
 
     if (hasManufacturer) {
@@ -58,6 +61,11 @@ function ManufacturerForm () {
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
                 <h1>Create a Manufacturer</h1>
+                {failedCreate && (
+                    <div className="alert alert-danger mb-3">
+                        An error has occured, make sure manufacturer name or id is unique
+                    </div>
+                )}
                 <form onSubmit={handleSubmit} id="create-manufacturer-form">
                 <div className="form-floating mb-3">
                     <input required onChange={nameChange} placeholder="name" type="text" name="name" id="name" className="form-control" value={name}/>
