@@ -352,7 +352,7 @@ Returns:
 <details>
 <summary>PUT: Updating an automobile by VIN</summary>
 
-## Inventory Microservice
+
 
 ---
 ## Service Microservice
