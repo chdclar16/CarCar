@@ -8,7 +8,7 @@ function AppointmentForm () {
     const [time, setTime] = useState('');
     const [technician, setTechnician] = useState('');
     const [reason, setReason] = useState('');
-    const [status] = useState('Created');
+    const [status, setStatus] = useState('Created');
 
     const vinChange = (event) => {
         const valueVin = event.target.value;
@@ -69,6 +69,7 @@ function AppointmentForm () {
             setTime('');
             setTechnicians([]);
             setReason('');
+            setStatus('Created');
 
         }
     }
