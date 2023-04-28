@@ -63,7 +63,10 @@ return (
                         <td><button onClick={() => finishAppointment(appointment.id)}>Finished</button></td>
                     </tr>
                 )
-            }})}
+                } else {
+                    return null;
+                }
+            })}
         </tbody>
     </table>
     </>
