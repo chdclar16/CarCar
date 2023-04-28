@@ -722,7 +722,8 @@ Once successfully created, the output should be as follows:
 </details>
 
 <details>
-<summary>DELETE: Remove a sale</summary>
+<summary>DELETE: Remove a Customer</summary>
+
 Once successful, the output should be as follows:
 ```
 {
