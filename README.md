@@ -132,7 +132,7 @@ Returns:
 
 Returns:
 ```
-  {
+{
 	"models": [
 		{
 			"href": "/api/models/1/",
@@ -173,7 +173,7 @@ Returns:
 <summary>POST: Creating a new model</summary>
 
 ```
-  {
+{
   "name": "CR-V",
   "picture_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_ji4NaKoArMM_ObGKvLTtN9hYjUhGQLslapXctzqle10Ghjx",
   "manufacturer_id": 1
@@ -181,7 +181,7 @@ Returns:
 ```
 Returns:
 ```
-    {
+{
 	"href": "/api/models/1/",
 	"id": 1,
 	"name": "CR-V",
@@ -199,7 +199,7 @@ Returns:
 <summary>PUT: Updating a model by ID</summary>
 
 ```
-  {
+{
   "name": "Passport",
   "picture_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEt2wRcjI0lwrZ4GM8T8NagukQ3UxX2OQirxUCMVvcAVYMQnYx"
 }
@@ -278,7 +278,7 @@ Returns:
 <summary>POST: Creating a new automobile</summary>
 
 ```
-  {
+{
   "color": "grey",
   "year": 2020,
   "vin": "7D345DFKL",
@@ -287,7 +287,7 @@ Returns:
 ```
 Returns:
 ```
-    {
+{
 	"href": "/api/automobiles/7D345DFKL/",
 	"id": 4,
 	"color": "grey",
@@ -311,6 +311,13 @@ Returns:
 
 <details>
 <summary>PUT: Updating an automobile by VIN</summary>
+
+```
+{
+  "color": "blue",
+  "year": 2018
+}
+```
 </details>
 
 ---
@@ -340,7 +347,7 @@ The `vip` property is **default** set to `“False”` because there are cases w
 
 Returns:
 ```
-  {
+{
 	"technicians": [
 		{
 			"id": 1,
@@ -357,7 +364,7 @@ Returns:
 <summary>POST: Creating new technician</summary>
 
 ```
-  {
+{
 	"first_name": "James",
 	"last_name": "Dun",
 	"employee_id": "AC773L"
@@ -365,7 +372,7 @@ Returns:
 ```
 Returns:
 ```
-    {
+{
 	"id": 1,
 	"first_name": "James",
 	"last_name": "Dun",
@@ -379,7 +386,7 @@ Returns:
 
 Returns:
 ```
-  {
+{
 	"message": "Technician successfully deleted"
 }
 ```
@@ -398,7 +405,7 @@ Returns:
 
 Returns:
 ```
-  {
+{
 	"appointments": [
 		{
 			"id": 11,
@@ -425,7 +432,7 @@ Returns:
 <summary>POST: Creating a new appointment | Note: the status will show false unless a Automobile is created in the inventory first</summary>
 
 ```
-  {
+{
 	"customer": "Gabriel M",
 	"date": "12-30-2023",
 	"time": "11:00:00",
@@ -436,7 +443,7 @@ Returns:
 ```
 Returns:
 ```
-    {
+{
 	"id": 11,
 	"customer": "Gabriel M",
 	"date": "12-30-2023",
@@ -460,7 +467,7 @@ Returns:
 
 Returns:
 ```
-  {
+{
 	"message": "Appointment successfully deleted"
 }
 ```
@@ -471,7 +478,7 @@ Returns:
 
 Returns:
 ```
-  {
+{
 	"id": 11,
 	"customer": "Gabriel M",
 	"date": "12-30-2023",
