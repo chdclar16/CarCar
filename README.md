@@ -6,7 +6,7 @@ Team:
 * Chad Manuel - Sales
 
 ## Design
-![Design](Project-Beta-Diagram.png)
+![Design](project-beta-Diagram.png)
 
 ---
 ## Running the Project
