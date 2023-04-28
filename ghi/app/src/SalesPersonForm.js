@@ -4,7 +4,8 @@ export default function SalesPersonForm(){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [employeeId, setEmployeeId] = useState('');
-
+    const [madeSale, setMadeSale] = useState(false)
+    const [failedSale, setFailedSale] = useState(false)
 
     const handleFirstNameChange = (event) => {
         const value = event.target.value;
@@ -39,13 +40,23 @@ export default function SalesPersonForm(){
         const response = await fetch('http://localhost:8090/api/salespeople/', fetchConfig);
         if (response.ok) {
             await response.json();
-            alert('Sales Person Created!')
             setEmployeeId('');
             setFirstName('');
             setLastName('');
-        } else {
-            alert('Sales Person Creation Failed!')
+            setMadeSale(true);
+        } else if (response.status !== 200) {
+            setFailedSale(true);
         }
+    }
+
+    let messageClasses = 'alert alert-success d-none mb-0';
+    let formClasses = '';
+    let messageFailedClasses = 'alert alert-danger d-none mb-0'
+    if (madeSale) {
+        messageClasses = 'alert alert-success mb-0';
+        formClasses = 'd-none'
+    } else if (failedSale) {
+        messageFailedClasses = 'alert alert-danger mb-0'
     }
 
     return (
@@ -54,7 +65,7 @@ export default function SalesPersonForm(){
             <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
                         <h1>Create A New Sales Person</h1>
-                        <form onSubmit={handleSubmit} id="create-employee-form">
+                        <form onSubmit={handleSubmit} className={formClasses} id="create-employee-form">
                             <div className="form-floating mb-3">
                                 <input onChange={handleFirstNameChange} value={firstName} required type="text" name="firstname" id="firstname" className="form-control" />
                                 <label htmlFor="firstname">First Name</label>
@@ -69,6 +80,12 @@ export default function SalesPersonForm(){
                             </div>
                             <button className="btn btn-primary">Create</button>
                         </form>
+                        <div className={messageClasses} id="success-message">
+                            Successfully Created A New Sales Person!
+                        </div>
+                        <div className={messageFailedClasses} id="unsuccessful-message">
+                            Unsuccessful creation, make sure employee ID is unique.
+                        </div>
                     </div>
                 </div>
             </div>
