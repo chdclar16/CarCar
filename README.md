@@ -6,7 +6,7 @@ Team:
 * Chad Manuel - Sales
 
 ## Design
-![Design](project-beta-Diagram.png)
+![Design](Project-Beta-Diagram.png)
 
 ---
 ## Running the Project
@@ -58,8 +58,7 @@ The `Automobile` model has the properties of `color`, `year`, `vin`, `sold`, and
 | Delete a manufacturers | DELETE | `http://localhost:8100/api/manufacturers/:id/` |
 
 <details>
-<summary>GET: Listing of manufacturers
-</summary>
+<summary>GET: List of manufacturers</summary>
 
 Returns:
 ```
@@ -127,8 +126,7 @@ Returns:
 | Delete a model | DELETE | `http://localhost:8100/api/models/:id/` |
 
 <details>
-<summary>GET: Listing of models
-</summary>
+<summary>GET: List of models</summary>
 
 Returns:
 ```
@@ -217,7 +215,7 @@ Returns:
 | Delete a automobile | DELETE | `http://localhost:8100/api/automobiles/:vin/` |
 
 <details>
-<summary>GET: Listing of automobile</summary>
+<summary>GET: List of automobiles</summary>
 
 Returns:
 ```
