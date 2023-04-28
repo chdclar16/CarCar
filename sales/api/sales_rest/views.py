@@ -77,7 +77,8 @@ def salespeople_description(request, id):
         salesperson = Salesperson.objects.get(id=id)
     except Salesperson.DoesNotExist:
         return JsonResponse(
-            {"message": "Invalid Sales Person"}
+            {"message": "Invalid Sales Person"},
+            status=400,
         )
 
     if request.method == "GET":
@@ -154,7 +155,6 @@ def sales_list(request):
 
             auto = AutomobileVO.objects.get(vin=content["automobile"])
             content["automobile"] = auto
-            # content["automobile"]["sold"] = True
 
             salesperson = Salesperson.objects.get(employee_id=content["salesperson"])
             content["salesperson"] = salesperson
@@ -182,7 +182,7 @@ def sale_description(request, id):
     except Sale.DoesNotExist:
         return JsonResponse(
             {"message": "Invalid Sale ID"},
-            status=400,
+            status=404,
         )
 
     if request.method == "GET":
