@@ -58,8 +58,7 @@ The `Automobile` model has the properties of `color`, `year`, `vin`, `sold`, and
 | Delete a manufacturers | DELETE | `http://localhost:8100/api/manufacturers/:id/` |
 
 <details>
-<summary>GET: Listing of manufacturers
-</summary>
+<summary>GET: List of manufacturers</summary>
 
 Returns:
 ```
@@ -127,12 +126,11 @@ Returns:
 | Delete a model | DELETE | `http://localhost:8100/api/models/:id/` |
 
 <details>
-<summary>GET: Listing of models
-</summary>
+<summary>GET: List of models</summary>
 
 Returns:
 ```
-  {
+{
 	"models": [
 		{
 			"href": "/api/models/1/",
@@ -173,7 +171,7 @@ Returns:
 <summary>POST: Creating a new model</summary>
 
 ```
-  {
+{
   "name": "CR-V",
   "picture_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSw_ji4NaKoArMM_ObGKvLTtN9hYjUhGQLslapXctzqle10Ghjx",
   "manufacturer_id": 1
@@ -181,7 +179,7 @@ Returns:
 ```
 Returns:
 ```
-    {
+{
 	"href": "/api/models/1/",
 	"id": 1,
 	"name": "CR-V",
@@ -196,10 +194,10 @@ Returns:
 </details>
 
 <details>
-<summary>PUT: Updating a model by ID</summary>
+<summary>PUT: Updating a model</summary>
 
 ```
-  {
+{
   "name": "Passport",
   "picture_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEt2wRcjI0lwrZ4GM8T8NagukQ3UxX2OQirxUCMVvcAVYMQnYx"
 }
@@ -217,7 +215,7 @@ Returns:
 | Delete a automobile | DELETE | `http://localhost:8100/api/automobiles/:vin/` |
 
 <details>
-<summary>GET: Listing of automobile</summary>
+<summary>GET: List of automobiles</summary>
 
 Returns:
 ```
@@ -278,7 +276,7 @@ Returns:
 <summary>POST: Creating a new automobile</summary>
 
 ```
-  {
+{
   "color": "grey",
   "year": 2020,
   "vin": "7D345DFKL",
@@ -287,7 +285,7 @@ Returns:
 ```
 Returns:
 ```
-    {
+{
 	"href": "/api/automobiles/7D345DFKL/",
 	"id": 4,
 	"color": "grey",
@@ -311,6 +309,13 @@ Returns:
 
 <details>
 <summary>PUT: Updating an automobile by VIN</summary>
+
+```
+{
+  "color": "blue",
+  "year": 2018
+}
+```
 </details>
 
 ---
@@ -329,6 +334,8 @@ The `status` property is set to **default** on `“Created”` when an appointme
 
 The `vip` property is **default** set to `“False”` because there are cases where the automobile designated for the appointment was not from the dealership inventory.
 
+#### Technicians API
+
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List Technicians | GET | `http://localhost:8080/api/technicians/` |
@@ -336,11 +343,11 @@ The `vip` property is **default** set to `“False”` because there are cases w
 | Delete a Technician | DELETE | `http://localhost:8080/api/technicians/:id` |
 
 <details>
-<summary>GET: Listing of technicians</summary>
+<summary>GET: List of technicians</summary>
 
 Returns:
 ```
-  {
+{
 	"technicians": [
 		{
 			"id": 1,
@@ -354,10 +361,10 @@ Returns:
 </details>
 
 <details>
-<summary>POST: Creating new technician</summary>
+<summary>POST: Creating a new technician</summary>
 
 ```
-  {
+{
 	"first_name": "James",
 	"last_name": "Dun",
 	"employee_id": "AC773L"
@@ -365,7 +372,7 @@ Returns:
 ```
 Returns:
 ```
-    {
+{
 	"id": 1,
 	"first_name": "James",
 	"last_name": "Dun",
@@ -379,11 +386,13 @@ Returns:
 
 Returns:
 ```
-  {
+{
 	"message": "Technician successfully deleted"
 }
 ```
 </details>
+
+#### Appointments API
 
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
@@ -398,10 +407,10 @@ Returns:
 
 Returns:
 ```
-  {
+{
 	"appointments": [
 		{
-			"id": 11,
+			"id": 1,
 			"customer": "Gabriel M",
 			"date": "12-30-2023",
 			"time": "11:00:00",
@@ -425,7 +434,7 @@ Returns:
 <summary>POST: Creating a new appointment | Note: the status will show false unless a Automobile is created in the inventory first</summary>
 
 ```
-  {
+{
 	"customer": "Gabriel M",
 	"date": "12-30-2023",
 	"time": "11:00:00",
@@ -436,8 +445,8 @@ Returns:
 ```
 Returns:
 ```
-    {
-	"id": 11,
+{
+	"id": 1,
 	"customer": "Gabriel M",
 	"date": "12-30-2023",
 	"time": "11:00:00",
@@ -456,23 +465,12 @@ Returns:
 </details>
 
 <details>
-<summary>DELETE: Deleting a appointment</summary>
+<summary>PUT: Updating status of a appointment</summary>
 
 Returns:
 ```
-  {
-	"message": "Appointment successfully deleted"
-}
-```
-</details>
-
-<details>
-<summary>PUT: Updating status of appointment</summary>
-
-Returns:
-```
-  {
-	"id": 11,
+{
+	"id": 1,
 	"customer": "Gabriel M",
 	"date": "12-30-2023",
 	"time": "11:00:00",
@@ -490,6 +488,17 @@ Returns:
 ```
 </details>
 
+<details>
+<summary>DELETE: Deleting a appointment</summary>
+
+Returns:
+```
+{
+	"message": "Appointment successfully deleted"
+}
+```
+</details>
+
 ---
 
 ## Sales Microservice
@@ -503,7 +512,7 @@ The `Sale` model consists of four properties: `automobile`, `saleperson`, `custo
 
 The `AutomobileVO` acts as a representation of the `Automobile` model from the inventory microservice. It holds the VIN information from the original model and is updated once every sixty seconds using a poller. The sales microservice can maintain a copy of the automobile data that is consistent with the inventory microservice because of the automobile value object.
 
-#### Sales People
+#### Sales People API
 
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
@@ -573,7 +582,7 @@ Once successful, the output should be as follows:
 ```
 </details>
 
-#### Customers
+#### Customers API
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List Customers | GET | `http://localhost:8090/api/customers/` |
@@ -639,7 +648,7 @@ Once successful, the output should be as follows:
 ```
 </details>
 
-### Sale
+#### Sale API
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List Sales | GET | `http://localhost:8090/api/sale/` |
