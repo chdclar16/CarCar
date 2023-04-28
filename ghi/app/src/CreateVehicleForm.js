@@ -106,8 +106,8 @@ export default function CreateVehicle() {
             </form>
             <div className={messageClasses} id="success-message">
                 Successfully Created A New Model!
+                <button type="button" className={anotherForm} onClick={() => {setMadeModel(false);setFailedModel(false)}}>Click here for another Model</button>
             </div>
-            <button type="button" className={anotherForm} onClick={() => setMadeModel(false)}>Click here for another Model</button>
             <div className={messageFailedClasses} id="unsuccessful-message">
                 Unsuccessful creating a new model! Double Check inputs
             </div>

@@ -52,9 +52,11 @@ export default function SalesPersonForm(){
     let messageClasses = 'alert alert-success d-none mb-0';
     let formClasses = '';
     let messageFailedClasses = 'alert alert-danger d-none mb-0'
+    let anotherForm = 'btn btn-primary d-none'
     if (madeSale) {
         messageClasses = 'alert alert-success mb-0';
         formClasses = 'd-none'
+        anotherForm = 'btn btn-primary'
     } else if (failedSale) {
         messageFailedClasses = 'alert alert-danger mb-0'
     }
@@ -82,6 +84,7 @@ export default function SalesPersonForm(){
                         </form>
                         <div className={messageClasses} id="success-message">
                             Successfully Created A New Sales Person!
+                            <button type="button" className={anotherForm} onClick={() => {setMadeSale(false);setFailedSale(false)}}>Click here to create another sales person</button>
                         </div>
                         <div className={messageFailedClasses} id="unsuccessful-message">
                             Unsuccessful creation, make sure employee ID is unique.

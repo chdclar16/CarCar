@@ -154,17 +154,19 @@ export default function NewSaleForm(){
                                 </select>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={handlePriceChange} value={price} placeholder="price" required type="text" name="price" id="price" className="form-control" maxLength="8"/>
+                                <input onChange={handlePriceChange} value={price} placeholder="price" required type="number" name="price" id="price" className="form-control" maxLength="8"/>
                                 <label htmlFor="model">Price</label>
                             </div>
                             <button className="btn btn-primary">Create</button>
                         </form>
                         <div className={messageClasses} id="success-message">
                         Successfully Created A New Sale!
+                        <div>
+                        <button type="button" className={anotherForm} onClick={() => {setHasSale(false);setFailedSale(false)}}>Click here for another sale</button>
                         </div>
-                        <button type="button" className={anotherForm} onClick={() => setHasSale(false)}>Click here for another sale</button>
+                        </div>
                         <div className={messageFailedClasses} id="unsuccessful-message">
-                        Unsuccessful creating a new sale, price is too high!
+                        Unsuccessful creating a new sale, price is too high! Must be under 999,999,999
                         </div>
                     </div>
                 </div>

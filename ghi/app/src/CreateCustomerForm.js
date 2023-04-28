@@ -99,8 +99,8 @@ export default function CustomerForm() {
                         </form>
                         <div className={messageClasses} id="success-message">
                             Successfully Create A New Customer!
+                            <button type="button" className={anotherForm} onClick={() => {setHasCustomer(false);setInvalidCustomer(false)}}>Click here to create another customer</button>
                         </div>
-                        <button type="button" className={anotherForm} onClick={() => setHasCustomer(false)}>Click here for another Model</button>
                         <div className={messageFailedClasses} id="unsuccessful-message">
                             Unsuccessful creating a new model! Double Check inputs
                         </div>

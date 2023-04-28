@@ -112,8 +112,8 @@ export default function AutomobileForm(){
             </form>
             <div className={messageClasses} id="success-message">
                 Successfully Created A New Model!
+                <button type="button" className={anotherForm} onClick={() => {setCreatedModel(false);setFailedModel(false)}}>Click here for another Model</button>
             </div>
-            <button type="button" className={anotherForm} onClick={() => setCreatedModel(false)}>Click here for another Model</button>
             <div className={messageFailedClasses} id="unsuccessful-message">
                 Unsuccessful creating a new model! Vin must be Unique.
             </div>
