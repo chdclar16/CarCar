@@ -36,56 +36,16 @@ Team:
 6. Wait until the terminal shows `You can now view app in the browser.`
 7. Open up Chrome(Browser) and type in `http://localhost:3000/` in the address bar.
 ---
-## API Routes
-
-#### Salespeople API
-
-| Action | Method | URL |
-| ----------- | ----------- | ----------- |
-| List salespeople | GET | `http://localhost:8090/api/salespeople/` |
-| Create a salespeople | POST | `http://localhost:8090/api/salespeople/` |
-| Delete a salespeople | DELETE | `http://localhost:8090/api/salespeople/:id` |
-
-#### Customer API
-
-| Action | Method | URL |
-| ----------- | ----------- | ----------- |
-| List Customers | GET | `http://localhost:8090/api/customers/` |
-| Create a Customer | POST | `http://localhost:8090/api/customers/` |
-| Delete a Customer | DELETE | `http://localhost:8090/api/customers/:id` |
-
-#### Sales API
-
-| Action | Method | URL |
-| ----------- | ----------- | ----------- |
-| List Sales | GET | `http://localhost:8090/api/sale/` |
-| Create a Sale | POST | `http://localhost:8090/api/sale/` |
-| Delete a Sale | DELETE | `http://localhost:8090/api/sale/:id` |
-
-#### Technician API
-
-| Action | Method | URL |
-| ----------- | ----------- | ----------- |
-| List Technicians | GET | `http://localhost:8080/api/technicians/` |
-| Create a Technician | POST | `http://localhost:8080/api/Technicians/` |
-| Delete a Technician | DELETE | `http://localhost:8080/api/Technicians/:id` |
-
-
-#### Appointments API
-
-| Action | Method | URL |
-| ----------- | ----------- | ----------- |
-| List Appointments | GET | `http://localhost:8080/api/Appointments/` |
-| Create an Appointment | POST | `http://localhost:8080/api/Appointments/` |
-| Delete an Appointment | DELETE | `http://localhost:8080/api/Appointments/:id` |
-| Set Appointment to canceled | PUT | `http://localhost:8080/api/Appointments/:id/cancel` |
-| Set Appointment to finished | PUT | `http://localhost:8080/api/Appointments/:id/finish` |
-
----
 
 ## Inventory Microservice
 
+The inventory microservice is consisted of three models: Manufacturer, VehicleModel, and Automobile. The inventory microservice handles all of the data of all the vehicles in the app.
 
+The `Manufacturer` model has a single property, `name` which holds the data to all manufacturer types available in the inventory.
+
+The `VehicleModel` has the properties of `name`, `picture_url`, `manufacturer`. The manufacturer property is a foreign key which refers to the `Manufacturer` model for the manufacturer name. The `name` property takes an input for the vehicle model's name. The `picture_url` takes an input of a picture url.
+
+The `Automobile` model has the properties of `color`, `year`, `vin`, `sold`, and `model`. Other microservices such as the service and sales microservice use a poller in order to retrieve information from this model. The `model` property is a foreign key which refers to the `VehicleModel` for the vehicle model's name. The `color` property takes an input for the vehicle's color. The `year` property takes in an integer for the vehicle's year. The `vin` property takes an input for the VIN number of the vehicle. The `sold` property is set to false by default.
 
 #### Manufacturers API
 
@@ -351,8 +311,7 @@ Returns:
 
 <details>
 <summary>PUT: Updating an automobile by VIN</summary>
-
-
+</details>
 
 ---
 ## Service Microservice
