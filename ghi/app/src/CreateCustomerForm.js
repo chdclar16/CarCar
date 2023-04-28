@@ -92,7 +92,7 @@ export default function CustomerForm() {
                                 <label htmlFor="address">Address</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={handlePhoneNumberChange} value={phoneNumber} required type="number" name="phonenumber" id="phonenumber" className="form-control" maxLength="10"/>
+                                <input onChange={handlePhoneNumberChange} value={phoneNumber} required type="number" name="phonenumber" id="phonenumber" className="form-control" maxLength="10" min="0"/>
                                 <label htmlFor="phonenumber">Phone Number</label>
                             </div>
                             <button className="btn btn-primary">Create</button>
