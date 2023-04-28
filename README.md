@@ -196,7 +196,7 @@ Returns:
 </details>
 
 <details>
-<summary>PUT: Updating a model by ID</summary>
+<summary>PUT: Updating a model</summary>
 
 ```
 {
@@ -336,6 +336,8 @@ The `status` property is set to **default** on `“Created”` when an appointme
 
 The `vip` property is **default** set to `“False”` because there are cases where the automobile designated for the appointment was not from the dealership inventory.
 
+#### Technicians API
+
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List Technicians | GET | `http://localhost:8080/api/technicians/` |
@@ -343,7 +345,7 @@ The `vip` property is **default** set to `“False”` because there are cases w
 | Delete a Technician | DELETE | `http://localhost:8080/api/technicians/:id` |
 
 <details>
-<summary>GET: Listing of technicians</summary>
+<summary>GET: List of technicians</summary>
 
 Returns:
 ```
@@ -361,7 +363,7 @@ Returns:
 </details>
 
 <details>
-<summary>POST: Creating new technician</summary>
+<summary>POST: Creating a new technician</summary>
 
 ```
 {
@@ -392,6 +394,8 @@ Returns:
 ```
 </details>
 
+#### Appointments API
+
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List Appointments | GET | `http://localhost:8080/api/appointments/` |
@@ -408,7 +412,7 @@ Returns:
 {
 	"appointments": [
 		{
-			"id": 11,
+			"id": 1,
 			"customer": "Gabriel M",
 			"date": "12-30-2023",
 			"time": "11:00:00",
@@ -444,7 +448,7 @@ Returns:
 Returns:
 ```
 {
-	"id": 11,
+	"id": 1,
 	"customer": "Gabriel M",
 	"date": "12-30-2023",
 	"time": "11:00:00",
@@ -452,6 +456,30 @@ Returns:
 	"vin": "7D345DFKL",
 	"vip": false,
 	"status": "Created",
+	"technician": {
+		"id": 1,
+		"first_name": "James",
+		"last_name": "Dun",
+		"employee_id": "AC773L"
+	},
+}
+```
+</details>
+
+<details>
+<summary>PUT: Updating status of a appointment</summary>
+
+Returns:
+```
+{
+	"id": 1,
+	"customer": "Gabriel M",
+	"date": "12-30-2023",
+	"time": "11:00:00",
+	"service_reason": "Check Engine Light",
+	"vin": "7D345DFKL",
+	"vip": false,
+	"status": "Finished",
 	"technician": {
 		"id": 1,
 		"first_name": "James",
@@ -473,30 +501,6 @@ Returns:
 ```
 </details>
 
-<details>
-<summary>PUT: Updating status of appointment</summary>
-
-Returns:
-```
-{
-	"id": 11,
-	"customer": "Gabriel M",
-	"date": "12-30-2023",
-	"time": "11:00:00",
-	"service_reason": "Check Engine Light",
-	"vin": "7D345DFKL",
-	"vip": false,
-	"status": "Finished",
-	"technician": {
-		"id": 1,
-		"first_name": "James",
-		"last_name": "Dun",
-		"employee_id": "AC773L"
-	},
-}
-```
-</details>
-
 ---
 
 ## Sales Microservice
@@ -510,7 +514,7 @@ The `Sale` model consists of four properties: `automobile`, `saleperson`, `custo
 
 The `AutomobileVO` acts as a representation of the `Automobile` model from the inventory microservice. It holds the VIN information from the original model and is updated once every sixty seconds using a poller. The sales microservice can maintain a copy of the automobile data that is consistent with the inventory microservice because of the automobile value object.
 
-#### Sales People
+#### Sales People API
 
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
@@ -580,7 +584,7 @@ Once successful, the output should be as follows:
 ```
 </details>
 
-#### Customers
+#### Customers API
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List Customers | GET | `http://localhost:8090/api/customers/` |
@@ -646,7 +650,7 @@ Once successful, the output should be as follows:
 ```
 </details>
 
-### Sale
+#### Sale API
 | Action | Method | URL |
 | ----------- | ----------- | ----------- |
 | List Sales | GET | `http://localhost:8090/api/sale/` |
