@@ -67,9 +67,12 @@ function AppointmentForm () {
             setCustomer('');
             setDate('');
             setTime('');
+            setTechnician('');
             setTechnicians([]);
             setReason('');
             setStatus('Created');
+
+            fetchData();
 
         }
     }
