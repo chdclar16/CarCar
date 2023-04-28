@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 function ManufacturerForm () {
     const [name, setName] = useState('');
+    const [hasManufacturer, setManufacturer] = useState(false);
 
     const nameChange = (event) => {
         const valueName = event.target.value;
@@ -26,29 +27,48 @@ function ManufacturerForm () {
         const response = await fetch(manufacturerUrl, fetchConfig)
         if (response.ok) {
             const data = await response.json();
-            
 
             setName('');
+            setManufacturer(true);
+
         }
     }
 
-
-return (
-    <div className="row">
-        <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-            <h1>Create a Manufacturer</h1>
-            <form onSubmit={handleSubmit} id="create-manufacturer-form">
-            <div className="form-floating mb-3">
-                <input required onChange={nameChange} placeholder="name" type="text" name="name" id="name" className="form-control" value={name}/>
-                <label htmlFor="name">Manufacturer Name</label>
+    if (hasManufacturer) {
+        return (
+            <div className="row">
+                <div className="offset-3 col-6">
+                <div className="shadow p-4 mt-4">
+                    <div className="alert alert-success mb-0" id="success-message">
+                        New manufacturer successfully added
+                        <div>
+                            <button className="btn btn-primary" onClick={() => setManufacturer(false)}>
+                                Add another Manufacturer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </div>
             </div>
-            <button className="btn btn-primary">Create</button>
-            </form>
+        )
+    }
+
+    return (
+        <div className="row">
+            <div className="offset-3 col-6">
+            <div className="shadow p-4 mt-4">
+                <h1>Create a Manufacturer</h1>
+                <form onSubmit={handleSubmit} id="create-manufacturer-form">
+                <div className="form-floating mb-3">
+                    <input required onChange={nameChange} placeholder="name" type="text" name="name" id="name" className="form-control" value={name}/>
+                    <label htmlFor="name">Manufacturer Name</label>
+                </div>
+                <button className="btn btn-primary">Create</button>
+                </form>
+            </div>
+            </div>
         </div>
-        </div>
-    </div>
-)
-}
+    )
+    }
 
 export default ManufacturerForm;

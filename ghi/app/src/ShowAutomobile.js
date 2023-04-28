@@ -18,7 +18,7 @@ const fetchData = async () => {
     }
     useEffect(() => {
         fetchData()
-    }, [automobile]);
+    }, []);
 
     return (
         <>

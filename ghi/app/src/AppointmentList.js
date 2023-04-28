@@ -23,7 +23,7 @@ const fetchData = async () => {
         const response = await fetch(appointmentUrl);
         if (response.ok) {
             const data = await response.json();
-            setAppointment(data.appointments)
+            setAppointment(data.appointments);
         }
     } catch (e) {
         console.error(e)
@@ -31,7 +31,7 @@ const fetchData = async () => {
 }
 useEffect (() => {
     fetchData()
-}, [appointment]);
+}, []);
 
 return (
     <>

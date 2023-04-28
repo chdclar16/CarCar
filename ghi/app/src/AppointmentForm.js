@@ -9,6 +9,7 @@ function AppointmentForm () {
     const [technician, setTechnician] = useState('');
     const [reason, setReason] = useState('');
     const [status, setStatus] = useState('Created');
+    const [hasAppointment, setHasAppointment] = useState(false);
 
     const vinChange = (event) => {
         const valueVin = event.target.value;
@@ -39,6 +40,7 @@ function AppointmentForm () {
         const valueTechnician = event.target.value;
         setTechnician(valueTechnician);
     }
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -71,6 +73,7 @@ function AppointmentForm () {
             setTechnicians([]);
             setReason('');
             setStatus('Created');
+            setHasAppointment(true);
 
             fetchData();
 
@@ -89,6 +92,24 @@ function AppointmentForm () {
         fetchData();
     }, []);
 
+    if (hasAppointment) {
+        return (
+            <div className="row">
+                <div className="offset-3 col-6">
+                    <div className="shadow p-4 mt-4">
+                        <div className="alert alert-success mb-0" id="success-message">
+                            New Appointment successfully created
+                            <div>
+                                <button className="btn btn-primary" onClick={() => setHasAppointment(false)}>
+                                    Create another Appointment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     return (
         <div className="row">
             <div className="offset-3 col-6">

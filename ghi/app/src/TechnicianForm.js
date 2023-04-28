@@ -4,6 +4,7 @@ function TechnicianForm () {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [employeeId, setEmployeeId] = useState('');
+    const [hasTechnician, setHasTechnician] = useState(false);
 
     const firstNChange = (event) => {
         const valueFirst = event.target.value;
@@ -42,36 +43,56 @@ function TechnicianForm () {
             setFirstName('');
             setLastName('');
             setEmployeeId('');
+            setHasTechnician(true);
 
         }
     }
 
-return (
-    <div className="row">
-        <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-            <h1>Add a Technician</h1>
-            <form onSubmit={handleSubmit} id="create-technician-form">
-                <div className="form-floating mb-3">
-                    <input required onChange={firstNChange} placeholder="first_name" type="text" id="first_name" className="form-control" value={firstName}/>
-                    <label htmlFor="first_name">First Name</label>
+    if (hasTechnician) {
+        return (
+            <div className="row">
+                <div className="offset-3 col-6">
+                <div className="shadow p-4 mt-4">
+                    <div className="alert alert-success mb-0" id="success-message">
+                        New technician successfully added
+                        <div>
+                            <button className="btn btn-primary" onClick={() => setHasTechnician(false)}>
+                                Add another Technician
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div className="form-floating mb-3">
-                    <input required onChange={lastNChange} placeholder="last_name" type="text" id="last_name" className="form-control" value={lastName}/>
-                    <label htmlFor="last_name">Last Name</label>
                 </div>
-                <div className="form-floating mb-3">
-                    <input required onChange={employeeChange} placeholder="employee_id" type="text" id="employee_id" className="form-control" value={employeeId}/>
-                    <label htmlFor="employee_id">Employee ID</label>
-                </div>
-                <div>
-                    <button className="btn btn-primary">Create</button>
-                </div>
-            </form>
+            </div>
+        )
+    }
+
+    return (
+        <div className="row">
+            <div className="offset-3 col-6">
+            <div className="shadow p-4 mt-4">
+                <h1>Add a Technician</h1>
+                <form onSubmit={handleSubmit} id="create-technician-form">
+                    <div className="form-floating mb-3">
+                        <input required onChange={firstNChange} placeholder="first_name" type="text" id="first_name" className="form-control" value={firstName}/>
+                        <label htmlFor="first_name">First Name</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                        <input required onChange={lastNChange} placeholder="last_name" type="text" id="last_name" className="form-control" value={lastName}/>
+                        <label htmlFor="last_name">Last Name</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                        <input required onChange={employeeChange} placeholder="employee_id" type="text" id="employee_id" className="form-control" value={employeeId}/>
+                        <label htmlFor="employee_id">Employee ID</label>
+                    </div>
+                    <div>
+                        <button className="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+            </div>
         </div>
-        </div>
-    </div>
-)
-}
+    )
+    }
 
 export default TechnicianForm;

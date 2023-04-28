@@ -4,12 +4,6 @@ import React, { useEffect, useState } from 'react';
 const ManufacturerListing = () => {
     const [manufacturer, setManufacturer] = useState([])
 
-const deleteManufacturer = async (pk) => {
-    const manufacturerUrl = `http://localhost:8100/api/manufacturers/${pk}/`
-    const response = fetch(manufacturerUrl, {method: 'DELETE'})
-    if (response.ok) {
-        await response.json();
-}}
 
 const fetchData = async () => {
     const url = 'http://localhost:8100/api/manufacturers/';
@@ -27,7 +21,7 @@ const fetchData = async () => {
 
     useEffect(() => {
         fetchData();
-    }, [manufacturer]);
+    }, []);
 
         return (
             <>
@@ -42,7 +36,6 @@ const fetchData = async () => {
                             return (
                                 <tr key={index} list={manufacturer.pk}>
                                     <td>{ manufacturer.name }</td>
-                                    <td><button onClick={() => deleteManufacturer(manufacturer.id)}>Delete</button></td>
                                 </tr>
                             )
                         })}
